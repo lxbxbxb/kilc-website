@@ -1,7 +1,7 @@
 ---
 title: "了解英国法律咨询：中国企业须知"
 date: "2026-03-01"
-author: "基恩国际法律咨询"
+author: "客安国际法律咨询"
 coverImage: "/images/hero/bare-trees-in-front-of-white-concrete-building.jpg"
 tags: ["法律见解", "商业", "英国市场"]
 excerpt: "对于中国企业而言，驾驭英国法律环境可能颇为复杂。本指南概述了拓展英国市场时最需关注的法律咨询领域。"

@@ -16,6 +16,7 @@
     "fees": "Fees",
     "programme": "Programme",
     "careers": "Careers",
+    "internship": "Internship Programme",
     "contact": "Contact",
     "companyFormation": "Company Formation",
     "xos": "XOS",
@@ -34,24 +35,3 @@
   },
   "footer": {
     "address": "128 City Road, London EC1V 2NX",
-    "email": "info@kilc.co.uk",
-    "rights": "All rights reserved.",
-    "privacy": "Privacy Policy",
-    "cookies": "Cookie Policy",
-    "aml": "AML Policy",
-    "ctf": "Counter-Terrorism Financing",
-    "cookieSettings": "Cookie Settings"
-  },
-  "cookieBanner": {
-    "title": "Cookie Preferences",
-    "message": "We use cookies to analyse site traffic and improve your experience. Analytics data stays on our own servers and is never shared with third parties.",
-    "learnMore": "Cookie Policy",
-    "accept": "Accept Analytics",
-    "decline": "Essential Only"
-  },
-  "chat": {
-    "title": "Chat with us",
-    "placeholder": "Type your message...",
-    "send": "Send"
-  }
-}

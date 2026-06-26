@@ -1,0 +1,120 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import Hero from '../components/Hero.astro';
+const locale = 'en';
+---
+
+<PageLayout
+  title="Internship Programme - KILC"
+  description="KILC Internship Programme: A fully online internship for university and A-level students worldwide."
+>
+  <Hero
+    title="Internship Programme"
+    subtitle="A fully online internship experience open to university and A-level students worldwide."
+    backgroundImage="/images/services/career.jpg"
+    locale={locale}
+  />
+
+  <!-- Introduction -->
+  <section class="py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mx-auto text-center mb-16">
+        <p class="text-lg text-gray-600 leading-relaxed">
+          The KILC Internship Programme is a fully online opportunity open to university and A-level students worldwide. Combining structured training materials, real-world case studies, and mentor feedback, the programme is delivered across flexible duration tracks — from a 2-week taster to a 3-month-plus extended placement.
+        </p>
+      </div>
+
+      <!-- Programme Tracks -->
+      <div class="max-w-4xl mx-auto mb-20">
+        <h2 class="text-3xl font-sans font-bold text-brand-dark text-center mb-10">Programme Tracks</h2>
+        <div class="space-y-6">
+          <div class="bg-white rounded-lg p-8 shadow-sm border border-gray-100">
+            <div class="flex flex-wrap items-center gap-3 mb-4">
+              <h3 class="text-xl font-sans font-bold text-brand-dark">2-Week Taster</h3>
+              <span class="inline-block bg-brand-primary/10 text-brand-primary text-xs font-semibold px-3 py-1 rounded-full">Introductory</span>
+            </div>
+            <p class="text-gray-600 leading-relaxed">
+              An introduction to international legal practice at KILC. Ideal for students considering a career in law. Includes structured reading materials, one case study, and a final mentor review session.
+            </p>
+          </div>
+          <div class="bg-white rounded-lg p-8 shadow-sm border border-gray-100">
+            <div class="flex flex-wrap items-center gap-3 mb-4">
+              <h3 class="text-xl font-sans font-bold text-brand-dark">4-Week Standard</h3>
+              <span class="inline-block bg-brand-primary/10 text-brand-primary text-xs font-semibold px-3 py-1 rounded-full">Standard</span>
+            </div>
+            <p class="text-gray-600 leading-relaxed">
+              A deeper immersion into KILC's core practice areas including immigration, corporate compliance, and international regulatory work. Includes weekly tasks, two case studies, and regular mentor feedback.
+            </p>
+          </div>
+          <div class="bg-white rounded-lg p-8 shadow-sm border border-gray-100">
+            <div class="flex flex-wrap items-center gap-3 mb-4">
+              <h3 class="text-xl font-sans font-bold text-brand-dark">3-Month Extended Placement</h3>
+              <span class="inline-block bg-brand-primary/10 text-brand-primary text-xs font-semibold px-3 py-1 rounded-full">Extended</span>
+            </div>
+            <p class="text-gray-600 leading-relaxed">
+              A comprehensive placement experience working alongside KILC professionals on live projects. Students contribute to research, drafting, and client support under close supervision. A certificate and professional reference are provided on completion.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Who Can Apply -->
+      <div class="bg-gray-50 rounded-2xl p-10 mb-20">
+        <h2 class="text-3xl font-sans font-bold text-brand-dark text-center mb-8">Who Can Apply</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-3xl mx-auto">
+          {[
+            'University students from any subject area worldwide',
+            'A-level students considering a career in law or international business',
+            'Students seeking UK work experience for visa or career purposes',
+            'International students wanting to understand the UK legal system',
+            'Graduates looking to build their professional portfolio',
+            'Students from all nationalities and academic backgrounds',
+          ].map((item) => (
+            <div class="flex items-start gap-3">
+              <svg class="w-5 h-5 text-brand-primary flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m4.5 12.75 6 6 9-13.5" />
+              </svg>
+              <p class="text-gray-600 text-sm">{item}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- What You Will Gain -->
+      <div class="max-w-4xl mx-auto mb-20">
+        <h2 class="text-3xl font-sans font-bold text-brand-dark text-center mb-10">What You Will Gain</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+          {[
+            { title: 'KILC Certificate', desc: 'An official certificate of completion from KILC International Legal Consultancy, recognised by employers and universities.' },
+            { title: 'Professional Reference', desc: 'A written reference from your supervising solicitor or mentor at KILC for use in job and university applications.' },
+            { title: 'Legal Research Skills', desc: 'Hands-on practice in legal research, case analysis, document drafting, and regulatory compliance.' },
+            { title: 'Cross-Border Legal Knowledge', desc: 'Deep understanding of UK and international law across immigration, corporate, criminal, and compliance practice areas.' },
+          ].map((item) => (
+            <div class="bg-white rounded-lg p-6 shadow-sm border border-gray-100">
+              <h4 class="font-semibold text-brand-dark mb-2">{item.title}</h4>
+              <p class="text-gray-600 text-sm leading-relaxed">{item.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <!-- How to Apply -->
+      <div class="max-w-2xl mx-auto text-center">
+        <h2 class="text-3xl font-sans font-bold text-brand-dark mb-6">How to Apply</h2>
+        <p class="text-gray-600 leading-relaxed mb-8">
+          Applications are open year-round. Send your CV and a short cover letter (no more than 300 words) explaining your interest and preferred track to our team. We aim to respond to all applications within 5 working days.
+        </p>
+        <a
+          href="/contact"
+          class="inline-block bg-brand-primary text-white font-semibold px-8 py-4 rounded-lg hover:bg-brand-primary/90 transition-colors"
+        >
+          Apply Now
+        </a>
+        <p class="text-sm text-gray-400 mt-4">
+          Email: <a href="mailto:info@kilc.co.uk" class="underline hover:text-brand-primary">info@kilc.co.uk</a>
+        </p>
+      </div>
+
+    </div>
+  </section>
+</PageLayout>

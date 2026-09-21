@@ -1,19 +1,19 @@
 ---
 import { t } from '../i18n/utils';
 import type { Locale } from '../i18n/utils';
+import { pagePath } from '../i18n/pages';
 
 interface Props {
   locale: Locale;
 }
 
 const { locale } = Astro.props;
-const prefix = locale === 'zh' ? '/zh' : '';
 
 const policyLinks = [
-  { label: t(locale, 'footer.privacy'), href: `${prefix}/privacy-policy` },
-  { label: t(locale, 'footer.cookies'), href: `${prefix}/cookie-policy` },
-  { label: t(locale, 'footer.aml'), href: `${prefix}/aml-policy` },
-  { label: t(locale, 'footer.ctf'), href: `${prefix}/counter-terrorism-financing` },
+  { label: t(locale, 'footer.privacy'), href: pagePath('privacyPolicy', locale) },
+  { label: t(locale, 'footer.cookies'), href: pagePath('cookiePolicy', locale) },
+  { label: t(locale, 'footer.aml'), href: pagePath('amlPolicy', locale) },
+  { label: t(locale, 'footer.ctf'), href: pagePath('ctfPolicy', locale) },
 ];
 
 const year = new Date().getFullYear();
@@ -39,26 +39,27 @@ const year = new Date().getFullYear();
       <!-- Quick Links -->
       <div>
         <h3 class="text-sm font-semibold uppercase tracking-wider mb-4 text-brand-dark">
-          {locale === 'zh' ? '快速链接' : 'Quick Links'}
+          {t(locale, 'footer.quickLinks')}
         </h3>
         <ul class="space-y-2">
-          <li><a href={`${prefix}/about`} class="text-gray-600 hover:text-brand-dark text-sm transition-colors">{t(locale, 'nav.about')}</a></li>
-          <li><a href={`${prefix}/services`} class="text-gray-600 hover:text-brand-dark text-sm transition-colors">{t(locale, 'nav.services')}</a></li>
-          <li><a href={`${prefix}/fees`} class="text-gray-600 hover:text-brand-dark text-sm transition-colors">{t(locale, 'nav.fees')}</a></li>
-          <li><a href={locale === 'zh' ? '/zh/contact-us' : '/contact'} class="text-gray-600 hover:text-brand-dark text-sm transition-colors">{t(locale, 'nav.contact')}</a></li>
+          <li><a href={pagePath('about', locale)} class="text-gray-600 hover:text-brand-dark text-sm transition-colors">{t(locale, 'nav.about')}</a></li>
+          <li><a href={pagePath('services', locale)} class="text-gray-600 hover:text-brand-dark text-sm transition-colors">{t(locale, 'nav.services')}</a></li>
+          <li><a href={pagePath('markets', locale)} class="text-gray-600 hover:text-brand-dark text-sm transition-colors">{t(locale, 'nav.markets')}</a></li>
+          <li><a href={pagePath('fees', locale)} class="text-gray-600 hover:text-brand-dark text-sm transition-colors">{t(locale, 'nav.fees')}</a></li>
+          <li><a href={pagePath('contact', locale)} class="text-gray-600 hover:text-brand-dark text-sm transition-colors">{t(locale, 'nav.contact')}</a></li>
           <li>
             <a href="https://platform.kilc.co.uk" target="_blank" rel="noopener noreferrer" class="text-gray-600 hover:text-brand-dark text-sm transition-colors">
               {t(locale, 'nav.xos')} Platform &rarr;
             </a>
           </li>
-          <li><a href={`${prefix}/blogs`} class="text-gray-600 hover:text-brand-dark text-sm transition-colors">{t(locale, 'nav.blog')}</a></li>
+          <li><a href={pagePath('blog', locale)} class="text-gray-600 hover:text-brand-dark text-sm transition-colors">{t(locale, 'nav.blog')}</a></li>
         </ul>
       </div>
 
       <!-- Policies & WeChat -->
       <div>
         <h3 class="text-sm font-semibold uppercase tracking-wider mb-4 text-brand-dark">
-          {locale === 'zh' ? '法律信息' : 'Legal'}
+          {t(locale, 'footer.legal')}
         </h3>
         <ul class="space-y-2">
           {policyLinks.map((link) => (
@@ -86,7 +87,7 @@ const year = new Date().getFullYear();
         <!-- WeChat QR -->
         <div class="mt-6">
           <p class="text-sm text-gray-500 mb-2">
-            {locale === 'zh' ? '微信联系' : 'WeChat'}
+            {t(locale, 'footer.wechat')}
           </p>
           <img
             src="/images/team/keane-wechat-code.jpg"

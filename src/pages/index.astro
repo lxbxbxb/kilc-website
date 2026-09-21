@@ -1,6 +1,8 @@
 ---
 import PageLayout from '../layouts/PageLayout.astro';
 import Hero from '../components/Hero.astro';
+import StatsBar from '../components/StatsBar.astro';
+import MarketSelector from '../components/MarketSelector.astro';
 import { t } from '../i18n/utils';
 
 const locale = 'en';
@@ -51,14 +53,25 @@ const galleryImages = [
   description={t(locale, 'site.description')}
 >
   <Hero
-    title="Bridging Laws, Cultures, and Opportunities"
-    subtitle="KILC empowers clients to move, invest and thrive — offering insight-led support on legal and regulatory frameworks built for change, innovation and global growth."
+    title={t(locale, 'hero.homeTitle')}
+    subtitle={t(locale, 'hero.homeSubtitle')}
+    titleKey="hero.homeTitle"
+    subtitleKey="hero.homeSubtitle"
     backgroundVideo="/video/homepage-hd_1280_720_25fps.mp4"
     backgroundImage="/images/hero/an-aerial-view-of-a-city-with-tall-buildings.jpg"
     cta={{ text: t(locale, 'hero.cta'), href: '/contact' }}
     showCta={false}
     locale={locale}
   />
+
+  <StatsBar locale={locale} />
+
+  <!-- Where are you investing from? -->
+  <section class="py-20 bg-white reveal">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <MarketSelector locale={locale} />
+    </div>
+  </section>
 
   <!-- Services Overview -->
   <section class="py-20 bg-brand-light reveal">

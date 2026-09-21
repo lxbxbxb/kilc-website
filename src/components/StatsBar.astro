@@ -1,0 +1,32 @@
+---
+import { t } from '../i18n/utils';
+import type { Locale } from '../i18n/utils';
+import BilingualText from './BilingualText.astro';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+const stats = [
+  { valueKey: 'stats.regulatoryAreasValue', labelKey: 'stats.regulatoryAreasLabel' },
+  { valueKey: 'stats.templatesValue', labelKey: 'stats.templatesLabel' },
+  { valueKey: 'stats.marketsValue', labelKey: 'stats.marketsLabel' },
+  { valueKey: 'stats.languagesValue', labelKey: 'stats.languagesLabel' },
+];
+---
+
+<section class="py-16 bg-brand-light">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <BilingualText path="stats.heading" locale={locale} as="h2" class="text-2xl font-sans font-bold text-brand-dark text-center mb-10" />
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+      {stats.map((stat) => (
+        <div>
+          <p class="text-4xl font-sans font-bold text-brand-primary mb-2">{t(locale, stat.valueKey)}</p>
+          <BilingualText path={stat.labelKey} locale={locale} as="p" class="text-sm text-gray-600" secondaryClass="block opacity-70 italic text-xs mt-0.5" />
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

@@ -1,63 +1,68 @@
-import en from "./en.json";
-import zh from "./zh.json";
+import en from './en.json';
+import zh from './zh.json';
+import es from './es.json';
+import ms from './ms.json';
+import { LOCALES, DEFAULT_LOCALE, isLocale } from './locales';
+import type { Locale } from './locales';
+import { pageIdForPath, pagePath } from './pages';
 
-const translations = { en, zh } as const;
+export type { Locale } from './locales';
+export { LOCALES, DEFAULT_LOCALE } from './locales';
 
-export type Locale = keyof typeof translations;
+const translations: Record<Locale, unknown> = { en, zh, es, ms };
 
 /**
- * Get a nested translation value by dot-separated key.
- * Example: t('en', 'nav.home') → "Home"
+ * Get a nested translation value by dot-separated key, e.g. t('en', 'nav.home').
+ * Falls back to the English string when a key hasn't been translated yet for
+ * `locale`, and to the key itself if it's missing everywhere — so a page never
+ * renders blank while a new language is still being filled in.
  */
 export function t(locale: Locale, key: string): string {
-  const keys = key.split(".");
-  let value: unknown = translations[locale];
-  for (const k of keys) {
-    if (value && typeof value === "object" && k in value) {
+  const fromLocale = lookup(translations[locale], key);
+  if (typeof fromLocale === 'string') return fromLocale;
+
+  const fromEnglish = lookup(translations[DEFAULT_LOCALE], key);
+  if (typeof fromEnglish === 'string') return fromEnglish;
+
+  return key;
+}
+
+function lookup(source: unknown, key: string): unknown {
+  let value: unknown = source;
+  for (const k of key.split('.')) {
+    if (value && typeof value === 'object' && k in value) {
       value = (value as Record<string, unknown>)[k];
     } else {
-      return key; // Fallback to key if not found
+      return undefined;
     }
   }
-  return typeof value === "string" ? value : key;
+  return value;
 }
 
-/**
- * Get the current locale from the URL pathname.
- */
+/** Get the current locale from the URL pathname. */
 export function getLocaleFromUrl(url: URL): Locale {
-  const [, segment] = url.pathname.split("/");
-  if (segment === "zh") return "zh";
-  return "en";
+  const [, segment] = url.pathname.split('/');
+  return segment && isLocale(segment) ? segment : DEFAULT_LOCALE;
 }
 
-/** Localized path map for ZH pages with different slugs */
-const zhSlugMap: Record<string, string> = {
-  "/global-market-navigation": "/zh/global-market-strategy",
-  "/immigration": "/zh/immigration-advisory",
-  "/criminal": "/zh/criminal-defence",
-  "/estate-investment": "/zh/real-estate-investment-protection",
-  "/contact": "/zh/contact-us",
-};
-
-const enSlugMap: Record<string, string> = Object.fromEntries(
-  Object.entries(zhSlugMap).map(([en, zh]) => [zh, en]),
-);
-
 /**
- * Get the localized alternate URL considering different ZH slugs.
+ * Get the equivalent URL for the same page in `targetLocale`. Falls back to
+ * the English version of the page if it hasn't been translated into
+ * `targetLocale` yet, and to the target locale's home page if the current
+ * path isn't a registered page at all.
  */
-export function getAlternateUrl(
-  pathname: string,
-  currentLocale: Locale,
-): string {
-  // Normalize: strip trailing slash for map lookup (but keep "/" as-is)
-  const normalized =
-    pathname.length > 1 ? pathname.replace(/\/$/, "") : pathname;
+export function getAlternateUrl(pathname: string, targetLocale: Locale): string {
+  const id = pageIdForPath(pathname);
+  if (!id) return pagePath('home', targetLocale);
+  return pagePath(id, targetLocale);
+}
 
-  if (currentLocale === "en") {
-    return zhSlugMap[normalized] || `/zh${normalized}`;
-  }
-  // Strip /zh prefix for lookup
-  return enSlugMap[normalized] || normalized.replace(/^\/zh/, "") || "/";
+/** Every locale other than `locale`, in display order. */
+export function otherLocales(locale: Locale): Locale[] {
+  return LOCALES.filter((l) => l !== locale);
+}
+
+/** The same key resolved in every supported locale — used by bilingual mode. */
+export function tAll(key: string): Record<Locale, string> {
+  return Object.fromEntries(LOCALES.map((l) => [l, t(l, key)])) as Record<Locale, string>;
 }

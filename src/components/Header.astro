@@ -1,7 +1,8 @@
 ---
-import LanguageToggle from './LanguageToggle.astro';
-import { t, getAlternateUrl } from '../i18n/utils';
+import LanguagePicker from './LanguagePicker.astro';
+import { t } from '../i18n/utils';
 import type { Locale } from '../i18n/utils';
+import { pagePath, type PageId } from '../i18n/pages';
 
 interface Props {
   locale: Locale;
@@ -10,28 +11,143 @@ interface Props {
 const { locale } = Astro.props;
 const currentPath = Astro.url.pathname;
 
+function link(id: PageId, labelKey: string) {
+  return { label: t(locale, labelKey), href: pagePath(id, locale) };
+}
+
 const navItems = [
-  { label: t(locale, 'nav.home'), href: locale === 'zh' ? '/zh' : '/' },
-  { label: t(locale, 'nav.about'), href: locale === 'zh' ? '/zh/about' : '/about' },
-  { label: t(locale, 'nav.people'), href: locale === 'zh' ? '/zh/people' : '/people' },
+  link('home', 'nav.home'),
+  link('about', 'nav.about'),
+  link('people', 'nav.people'),
   {
     label: t(locale, 'nav.services'),
-    href: locale === 'zh' ? '/zh/services' : '/services',
+    href: pagePath('services', locale),
     children: [
-      { label: t(locale, 'nav.globalMarket'), href: locale === 'zh' ? '/zh/global-market-strategy' : '/global-market-navigation' },
-      { label: t(locale, 'nav.immigration'), href: locale === 'zh' ? '/zh/immigration-advisory' : '/immigration' },
-      { label: t(locale, 'nav.criminal'), href: locale === 'zh' ? '/zh/criminal-defence' : '/criminal' },
-      { label: t(locale, 'nav.studentServices'), href: locale === 'zh' ? '/zh/student-services' : '/student-services' },
-      { label: t(locale, 'nav.estateInvestment'), href: locale === 'zh' ? '/zh/real-estate-investment-protection' : '/estate-investment' },
-      { label: t(locale, 'nav.companyFormation'), href: locale === 'zh' ? '/zh/company-formation' : '/company-formation' },
+      link('globalMarket', 'nav.globalMarket'),
+      link('immigration', 'nav.immigration'),
+      link('criminal', 'nav.criminal'),
+      link('studentServices', 'nav.studentServices'),
+      link('estateInvestment', 'nav.estateInvestment'),
+      link('companyFormation', 'nav.companyFormation'),
     ],
   },
-  { label: t(locale, 'nav.xos'), href: locale === 'zh' ? '/zh/xos' : '/xos' },
-  { label: t(locale, 'nav.programme'), href: locale === 'zh' ? '/zh/programme' : '/programme' },
-  { label: t(locale, 'nav.careers'), href: locale === 'zh' ? '/zh/careers' : '/careers' },
-  { label: t(locale, 'nav.internship'), href: locale === 'zh' ? '/zh/internship' : '/internship' },
-  { label: t(locale, 'nav.blog'), href: locale === 'zh' ? '/zh/blogs' : '/blogs' },
-  { label: t(locale, 'nav.contact'), href: locale === 'zh' ? '/zh/contact-us' : '/contact' },
+  link('markets', 'nav.markets'),
+  link('xos', 'nav.xos'),
+  link('programme', 'nav.programme'),
+  link('careers', 'nav.careers'),
+  link('internship', 'nav.internship'),
+  link('blog', 'nav.blog'),
+  link('contact', 'nav.contact'),
 ];
 
-const alternatePath = getAlternateUrl(currentPath, locale);
+function isActive(href: string) {
+  if (href === '/' || href === '/zh' || href === '/es' || href === '/ms') return currentPath === href;
+  return currentPath === href || currentPath.startsWith(`${href}/`);
+}
+---
+
+<header class="sticky top-0 z-30 bg-white/95 backdrop-blur border-b border-gray-100">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex items-center justify-between h-20">
+      <a href={pagePath('home', locale)} class="flex-shrink-0">
+        <img src="/images/general/kilc-logo-colour-transparent.png" alt="KILC" class="h-14 w-auto" />
+      </a>
+
+      <!-- Desktop nav -->
+      <nav class="hidden lg:flex items-center gap-1">
+        {navItems.map((item) => (
+          'children' in item ? (
+            <div class="relative group">
+              <a
+                href={item.href}
+                aria-current={isActive(item.href) ? 'page' : undefined}
+                class:list={[
+                  'px-3 py-2 text-sm font-medium rounded-md transition-colors inline-flex items-center gap-1',
+                  isActive(item.href) ? 'text-brand-primary' : 'text-brand-dark hover:text-brand-primary',
+                ]}
+              >
+                {item.label}
+                <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+              </a>
+              <div class="invisible group-hover:visible opacity-0 group-hover:opacity-100 transition-opacity absolute left-0 top-full pt-2 w-64">
+                <div class="bg-white rounded-lg shadow-lg ring-1 ring-black/5 p-2">
+                  {item.children.map((child) => (
+                    <a href={child.href} class="block px-3 py-2 rounded-md text-sm text-gray-700 hover:bg-brand-light hover:text-brand-primary transition-colors">
+                      {child.label}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ) : (
+            <a
+              href={item.href}
+              aria-current={isActive(item.href) ? 'page' : undefined}
+              class:list={[
+                'px-3 py-2 text-sm font-medium rounded-md transition-colors',
+                isActive(item.href) ? 'text-brand-primary' : 'text-brand-dark hover:text-brand-primary',
+              ]}
+            >
+              {item.label}
+            </a>
+          )
+        ))}
+      </nav>
+
+      <div class="hidden lg:flex items-center gap-2">
+        <LanguagePicker locale={locale} />
+      </div>
+
+      <!-- Mobile menu toggle -->
+      <button
+        id="mobile-menu-btn"
+        type="button"
+        class="lg:hidden inline-flex items-center justify-center p-2 rounded-md text-brand-dark hover:bg-gray-50"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        aria-label="Open menu"
+      >
+        <svg class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="hidden lg:hidden border-t border-gray-100 bg-white">
+    <nav class="px-4 py-4 space-y-1 max-h-[75vh] overflow-y-auto">
+      {navItems.map((item) => (
+        <div>
+          <a href={item.href} class="block px-2 py-2 rounded-md text-sm font-medium text-brand-dark hover:bg-brand-light">
+            {item.label}
+          </a>
+          {'children' in item && (
+            <div class="pl-4 space-y-1">
+              {item.children.map((child) => (
+                <a href={child.href} class="block px-2 py-1.5 rounded-md text-sm text-gray-600 hover:bg-brand-light">
+                  {child.label}
+                </a>
+              ))}
+            </div>
+          )}
+        </div>
+      ))}
+      <div class="pt-3 mt-3 border-t border-gray-100">
+        <LanguagePicker locale={locale} />
+      </div>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const btn = document.getElementById('mobile-menu-btn');
+  const menu = document.getElementById('mobile-menu');
+  btn?.addEventListener('click', () => {
+    const isOpen = !menu?.classList.contains('hidden');
+    menu?.classList.toggle('hidden');
+    btn.setAttribute('aria-expanded', String(!isOpen));
+  });
+</script>

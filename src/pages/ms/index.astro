@@ -1,0 +1,124 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import Hero from '../../components/Hero.astro';
+import StatsBar from '../../components/StatsBar.astro';
+import MarketSelector from '../../components/MarketSelector.astro';
+import { t } from '../../i18n/utils';
+import { pagePath } from '../../i18n/pages';
+
+const locale = 'ms';
+
+// NOTE: machine-drafted Bahasa Malaysia — flagged for native-speaker
+// proofread before this page is promoted out of draft status (see docs/CONTRIB.md).
+const serviceCards = [
+  {
+    title: 'Risiko Perniagaan & Pematuhan',
+    description: 'Panduan strategik untuk memasuki dan mengemudi pasaran UK dengan yakin.',
+    image: '/images/services/people-having-meeting-on-rectangular-brown-table.jpg',
+    imagePosition: 'center 89%',
+    href: pagePath('globalMarket', locale),
+  },
+  {
+    title: 'Imigresen & Visa',
+    description: 'Nasihat pakar visa dan imigresen yang disesuaikan dengan matlamat anda.',
+    image: '/images/services/woman-in-suit-shows-document-to-man.jpg',
+    imagePosition: 'center 16%',
+    href: pagePath('immigration', locale),
+  },
+  {
+    title: 'Pelaburan Hartanah',
+    description: 'Perlindungan dan nasihat untuk pelaburan hartanah anda di seluruh UK.',
+    image: '/images/hero/white-concrete-building-near-road-during-daytime.jpg',
+    imagePosition: 'center 100%',
+    href: pagePath('estateInvestment', locale),
+  },
+  {
+    title: 'Penubuhan Syarikat',
+    description: 'Sokongan menyeluruh untuk menubuhkan syarikat anda di UK.',
+    image: '/images/services/a-view-of-a-city-with-tall-buildings.jpg',
+    imagePosition: 'center 60%',
+    href: pagePath('companyFormation', locale),
+  },
+];
+---
+
+<PageLayout
+  title={t(locale, 'site.title')}
+  description={t(locale, 'site.description')}
+>
+  <Hero
+    title={t(locale, 'hero.homeTitle')}
+    subtitle={t(locale, 'hero.homeSubtitle')}
+    titleKey="hero.homeTitle"
+    subtitleKey="hero.homeSubtitle"
+    backgroundVideo="/video/homepage-hd_1280_720_25fps.mp4"
+    backgroundImage="/images/hero/an-aerial-view-of-a-city-with-tall-buildings.jpg"
+    cta={{ text: t(locale, 'hero.cta'), href: pagePath('contact', locale) }}
+    showCta={false}
+    locale={locale}
+  />
+
+  <StatsBar locale={locale} />
+
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <MarketSelector locale={locale} />
+    </div>
+  </section>
+
+  <section class="py-20 bg-brand-light">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl font-sans font-bold text-brand-dark mb-4">
+          Penyelesaian Undang-undang Yang Disesuaikan
+        </h2>
+        <p class="text-gray-600 max-w-2xl mx-auto text-lg">
+          Perkhidmatan perundingan undang-undang khusus untuk pelanggan antarabangsa yang mengharungi kerumitan undang-undang dan perniagaan UK.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        {serviceCards.map((card) => (
+          <a href={card.href} class="group block bg-white rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow">
+            <div class="overflow-hidden">
+              <img
+                src={card.image}
+                alt={card.title}
+                class="w-full h-52 object-cover group-hover:scale-105 transition-transform duration-300"
+                style={`object-position: ${card.imagePosition}`}
+                loading="lazy"
+              />
+            </div>
+            <div class="p-6">
+              <h3 class="text-xl font-sans font-semibold text-brand-dark group-hover:text-brand-primary transition-colors mb-3">
+                {card.title}
+              </h3>
+              <p class="text-gray-600">
+                {card.description}
+              </p>
+            </div>
+          </a>
+        ))}
+      </div>
+      <p class="text-center text-sm text-gray-400 mt-8">
+        Halaman perkhidmatan ini masih hanya tersedia dalam Bahasa Inggeris — pasukan kami boleh membantu anda dalam Bahasa Malaysia.
+      </p>
+    </div>
+  </section>
+
+  <section class="py-20 cta-section">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h2 class="text-3xl font-sans font-bold mb-6">
+        Bersedia untuk mengembangkan perniagaan anda ke UK?
+      </h2>
+      <p class="text-lg mb-8 text-white/90">
+        Hubungi pasukan pakar undang-undang kami hari ini.
+      </p>
+      <a
+        href={pagePath('contact', locale)}
+        class="inline-block bg-brand-primary text-brand-dark font-semibold px-8 py-3 rounded-lg hover:bg-brand-accent transition-colors"
+      >
+        Hubungi Kami
+      </a>
+    </div>
+  </section>
+</PageLayout>

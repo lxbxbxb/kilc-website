@@ -1,0 +1,26 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import Hero from '../../components/Hero.astro';
+import MarketSelector from '../../components/MarketSelector.astro';
+import { t } from '../../i18n/utils';
+
+const locale = 'en';
+---
+
+<PageLayout
+  title="Where Are You Investing From? | KILC"
+  description="Pick your starting market to see UK cross-border compliance examples and structures relevant to you — China, Argentina, Malaysia, and more."
+>
+  <Hero
+    title={t(locale, 'nav.markets')}
+    backgroundImage="/images/hero/an-aerial-view-of-a-city-with-tall-buildings.jpg"
+    locale={locale}
+    showCta={false}
+  />
+
+  <section class="py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <MarketSelector locale={locale} />
+    </div>
+  </section>
+</PageLayout>

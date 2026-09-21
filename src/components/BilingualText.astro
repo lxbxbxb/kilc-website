@@ -1,0 +1,26 @@
+---
+import { tAll } from '../i18n/utils';
+import type { Locale } from '../i18n/utils';
+import { LOCALES } from '../i18n/locales';
+
+interface Props {
+  /** Dot-separated i18n key, e.g. "hero.homeTitle". */
+  path: string;
+  /** The page's own locale — always shown, never hidden by bilingual mode. */
+  locale: Locale;
+  /** Wrapper element for the primary (visible) text. Default "span". */
+  as?: string;
+  class?: string;
+  /** Class applied to the secondary-language twins (hidden until toggled on). */
+  secondaryClass?: string;
+}
+
+const { path, locale, as: Tag = 'span', class: className = '', secondaryClass = 'block opacity-70 italic' } = Astro.props;
+const values = tAll(path);
+const secondaryLocales = LOCALES.filter((l) => l !== locale);
+---
+
+<Tag class={className} data-i18n-primary="true">{values[locale]}</Tag>
+{secondaryLocales.map((l) => (
+  <Tag class={secondaryClass} data-i18n-lang={l} hidden>{values[l]}</Tag>
+))}

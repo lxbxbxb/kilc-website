@@ -1,13 +1,14 @@
 ---
 import { t } from '../i18n/utils';
 import type { Locale } from '../i18n/utils';
+import { pagePath } from '../i18n/pages';
 
 interface Props {
   locale: Locale;
 }
 
 const { locale } = Astro.props;
-const prefix = locale === 'zh' ? '/zh' : '';
+const cookiePolicyHref = pagePath('cookiePolicy', locale);
 ---
 
 <div
@@ -26,7 +27,7 @@ const prefix = locale === 'zh' ? '/zh' : '';
         </p>
         <p id="cookie-banner-body" class="mt-1 text-xs text-white/70">
           {t(locale, 'cookieBanner.message')}{' '}
-          <a href={`${prefix}/cookie-policy`} class="underline transition-colors hover:text-[#C5A059]">
+          <a href={cookiePolicyHref} class="underline transition-colors hover:text-[#C5A059]">
             {t(locale, 'cookieBanner.learnMore')}
           </a>
         </p>

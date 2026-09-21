@@ -1,0 +1,82 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import Hero from '../../components/Hero.astro';
+import { t } from '../../i18n/utils';
+import { pagePath } from '../../i18n/pages';
+
+const locale = 'en';
+
+const sections = [
+  {
+    title: 'Company structuring',
+    body: 'Whether you are setting up a wholly-owned UK subsidiary of a mainland Chinese or Hong Kong company, or establishing a standalone UK entity, we coordinate incorporation, registered office, and Companies House filings alongside your existing corporate structure back home.',
+  },
+  {
+    title: 'Cross-border capital transfer',
+    body: 'Moving capital into the UK from mainland China or Hong Kong involves coordinating with your bank, and — for mainland China — SAFE (State Administration of Foreign Exchange) outbound investment filings. We work alongside your accountants and, where mainland approvals are required, your local counsel, to keep the UK side of the transaction ready.',
+  },
+  {
+    title: 'Immigration routes',
+    body: 'From the Innovator Founder route for entrepreneurs to Skilled Worker sponsorship and family visas, we advise on the immigration pathway that fits your business plans and personal circumstances.',
+  },
+  {
+    title: 'Property & investment protection',
+    body: 'We help bridge differences between UK and Chinese legal systems for real estate and investment transactions, provide bilingual documentation, and coordinate with local UK partners (surveyors, conveyancers, agents) to keep transactions moving smoothly.',
+  },
+  {
+    title: 'Bilingual documentation',
+    body: 'Contracts, compliance policies, and regulatory filings are prepared with parallel English and Chinese versions where useful, so every party — and every regulator — is working from a document they can read directly.',
+  },
+];
+---
+
+<PageLayout
+  title="China → UK: Cross-Border Compliance Guide | KILC"
+  description="Company structuring, capital transfer, immigration routes, and investment protection for mainland Chinese and Hong Kong investors entering the UK."
+>
+  <Hero
+    title="China → UK"
+    subtitle="Company structuring, capital transfer, immigration routes, and investment protection for mainland Chinese and Hong Kong investors entering the UK."
+    backgroundImage="/images/hero/an-aerial-view-of-a-city-with-tall-buildings.jpg"
+    locale={locale}
+  />
+
+  <section class="py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mx-auto text-center mb-16">
+        <p class="text-lg text-gray-600 leading-relaxed">
+          KILC has advised mainland Chinese and Hong Kong clients on UK market entry since our founding — this page brings that experience together in one place, from company formation through to day-to-day compliance.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16 mb-16">
+        {sections.map((section) => (
+          <div>
+            <h3 class="text-xl font-sans font-bold text-brand-dark mb-4">{section.title}</h3>
+            <p class="text-gray-600 leading-relaxed">{section.body}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="max-w-3xl mx-auto bg-brand-light rounded-lg p-10 text-center">
+        <h2 class="text-2xl font-sans font-bold text-brand-dark mb-4">Also relevant to you</h2>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a href={pagePath('companyFormation', locale)} class="text-brand-primary font-semibold hover:text-brand-secondary transition-colors">{t(locale, 'nav.companyFormation')} &rarr;</a>
+          <a href={pagePath('immigration', locale)} class="text-brand-primary font-semibold hover:text-brand-secondary transition-colors">{t(locale, 'nav.immigration')} &rarr;</a>
+          <a href={pagePath('estateInvestment', locale)} class="text-brand-primary font-semibold hover:text-brand-secondary transition-colors">{t(locale, 'nav.estateInvestment')} &rarr;</a>
+          <a href={pagePath('studentServices', locale)} class="text-brand-primary font-semibold hover:text-brand-secondary transition-colors">{t(locale, 'nav.studentServices')} &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 cta-section">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h2 class="text-3xl font-sans font-bold mb-6">Ready to bring your business to the UK?</h2>
+      <p class="text-lg mb-8 text-white/90">Speak with our team — we work in both English and Mandarin.</p>
+      <a href={pagePath('contact', locale)} class="inline-block bg-brand-primary text-brand-dark font-semibold px-8 py-3 rounded-lg hover:bg-brand-accent transition-colors">
+        {t(locale, 'nav.contact')}
+      </a>
+    </div>
+  </section>
+</PageLayout>

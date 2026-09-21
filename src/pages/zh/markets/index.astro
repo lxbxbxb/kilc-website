@@ -1,0 +1,26 @@
+---
+import PageLayout from '../../../layouts/PageLayout.astro';
+import Hero from '../../../components/Hero.astro';
+import MarketSelector from '../../../components/MarketSelector.astro';
+import { t } from '../../../i18n/utils';
+
+const locale = 'zh';
+---
+
+<PageLayout
+  title="您从哪里投资英国？ | KILC"
+  description="选择您的出发市场，查看与您相关的英国跨境合规示例与架构——中国、阿根廷、马来西亚及更多市场。"
+>
+  <Hero
+    title={t(locale, 'nav.markets')}
+    backgroundImage="/images/hero/an-aerial-view-of-a-city-with-tall-buildings.jpg"
+    locale={locale}
+    showCta={false}
+  />
+
+  <section class="py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <MarketSelector locale={locale} />
+    </div>
+  </section>
+</PageLayout>

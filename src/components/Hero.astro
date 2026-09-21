@@ -1,9 +1,13 @@
 ---
 import type { Locale } from '../i18n/utils';
+import BilingualText from './BilingualText.astro';
 
 interface Props {
   title: string;
   subtitle?: string;
+  /** i18n keys — when set, title/subtitle render via BilingualText so bilingual mode can pair a second language. */
+  titleKey?: string;
+  subtitleKey?: string;
   backgroundImage?: string;
   backgroundVideo?: string;
   backgroundPosition?: string;
@@ -15,6 +19,8 @@ interface Props {
 const {
   title,
   subtitle,
+  titleKey,
+  subtitleKey,
   backgroundImage = '/images/hero/an-aerial-view-of-a-city-with-tall-buildings.jpg',
   backgroundVideo,
   backgroundPosition = 'center',
@@ -51,10 +57,16 @@ const {
 
   <!-- Content -->
   <div class="relative z-10 max-w-4xl mx-auto px-4 py-20 text-center text-white">
-    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-sans font-bold italic leading-tight mb-6">
-      {title}
-    </h1>
-    {subtitle && (
+    {titleKey ? (
+      <BilingualText path={titleKey} locale={locale} as="h1" class="text-4xl sm:text-5xl lg:text-6xl font-sans font-bold italic leading-tight mb-6" secondaryClass="block text-2xl sm:text-3xl font-sans italic opacity-80 mt-2" />
+    ) : (
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-sans font-bold italic leading-tight mb-6">
+        {title}
+      </h1>
+    )}
+    {subtitleKey ? (
+      <BilingualText path={subtitleKey} locale={locale} as="p" class="text-lg sm:text-xl text-white/90 max-w-2xl mx-auto mb-8" secondaryClass="block text-base text-white/70 max-w-2xl mx-auto mt-2 italic" />
+    ) : subtitle && (
       <p class="text-lg sm:text-xl text-white/90 max-w-2xl mx-auto mb-8">
         {subtitle}
       </p>

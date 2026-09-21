@@ -11,7 +11,7 @@ export default defineConfig({
     filter: (page) => !page.includes('/admin'),
   })],
   i18n: {
-    locales: ['en', 'zh'],
+    locales: ['en', 'zh', 'es', 'ms'],
     defaultLocale: 'en',
     routing: {
       prefixDefaultLocale: false,

@@ -1,0 +1,82 @@
+---
+// NOTE: machine-drafted Spanish — needs both a native-speaker proofread and
+// local Argentine legal/tax review before this page leaves draft status.
+import PageLayout from '../../../layouts/PageLayout.astro';
+import Hero from '../../../components/Hero.astro';
+import DraftBanner from '../../../components/DraftBanner.astro';
+import { t } from '../../../i18n/utils';
+import { pagePath } from '../../../i18n/pages';
+
+const locale = 'es';
+
+const sections = [
+  {
+    title: 'Control de cambios',
+    body: 'El mercado cambiario argentino está regulado por el BCRA (Banco Central de la República Argentina). Las normas sobre el movimiento de capitales dentro y fuera de Argentina han cambiado con frecuencia en los últimos años, por lo que el régimen vigente al momento de su operación debe confirmarse con un asesor local o un agente de cambio autorizado antes de planificar cualquier transferencia.',
+  },
+  {
+    title: 'Convenio de doble imposición',
+    body: 'El Reino Unido y Argentina cuentan con un convenio bilateral para evitar la doble imposición. Si —y cómo— se aplica a su situación depende de su residencia fiscal y de la estructura utilizada, y debe confirmarse con un asesor fiscal cualificado en ambas jurisdicciones.',
+  },
+  {
+    title: 'Vías para inversores y empresas',
+    body: 'Las vías migratorias del Reino Unido habitualmente utilizadas por emprendedores e inversores internacionales —como la ruta Innovator Founder, el patrocinio Skilled Worker y Global Talent— están, en principio, abiertas a los ciudadanos argentinos en las mismas condiciones que a otros solicitantes no británicos. La elegibilidad depende de sus circunstancias específicas.',
+  },
+  {
+    title: 'Estructuración societaria',
+    body: 'Constituir una sociedad en el Reino Unido como filial de, o junto a, una entidad argentina implica el mismo proceso de constitución ante Companies House que cualquier otra matriz extranjera, coordinado con sus contadores y asesores legales en Argentina para el lado local de la estructura.',
+  },
+];
+---
+
+<PageLayout
+  title="Argentina → Reino Unido: Guía de Cumplimiento Transfronterizo (Borrador) | KILC"
+  description="Normativa cambiaria, convenio de doble imposición y vías de inversión para argentinos que se expanden al Reino Unido. Borrador — pendiente de revisión legal local."
+>
+  <Hero
+    title="Argentina → Reino Unido"
+    subtitle="Normativa cambiaria, consideraciones del convenio de doble imposición y vías de visado para inversores argentinos que se expanden al Reino Unido."
+    backgroundImage="/images/hero/white-concrete-building-near-road-during-daytime.jpg"
+    locale={locale}
+  />
+
+  <section class="py-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <DraftBanner locale={locale} />
+
+      <div class="text-center mb-16">
+        <p class="text-lg text-gray-600 leading-relaxed">
+          Esta guía describe, a nivel general, las áreas que un inversor o empresa argentina normalmente debe considerar al entrar al mercado del Reino Unido. No cubre tasas, límites o procedimientos específicos vigentes — estos cambian con frecuencia y deben confirmarse antes de actuar en consecuencia.
+        </p>
+      </div>
+
+      <div class="space-y-12 mb-16">
+        {sections.map((section) => (
+          <div>
+            <h3 class="text-xl font-sans font-bold text-brand-dark mb-4">{section.title}</h3>
+            <p class="text-gray-600 leading-relaxed">{section.body}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="bg-brand-light rounded-lg p-10 text-center">
+        <h2 class="text-2xl font-sans font-bold text-brand-dark mb-4">También le puede interesar</h2>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a href={pagePath('companyFormation', locale)} class="text-brand-primary font-semibold hover:text-brand-secondary transition-colors">{t(locale, 'nav.companyFormation')} &rarr;</a>
+          <a href={pagePath('immigration', locale)} class="text-brand-primary font-semibold hover:text-brand-secondary transition-colors">{t(locale, 'nav.immigration')} &rarr;</a>
+          <a href={pagePath('globalMarket', locale)} class="text-brand-primary font-semibold hover:text-brand-secondary transition-colors">{t(locale, 'nav.globalMarket')} &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 cta-section">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h2 class="text-3xl font-sans font-bold mb-6">¿Listo para hablar sobre sus planes en el Reino Unido?</h2>
+      <p class="text-lg mb-8 text-white/90">Contáctenos y le asesoraremos según su situación específica.</p>
+      <a href={pagePath('contact', locale)} class="inline-block bg-brand-primary text-brand-dark font-semibold px-8 py-3 rounded-lg hover:bg-brand-accent transition-colors">
+        {t(locale, 'nav.contact')}
+      </a>
+    </div>
+  </section>
+</PageLayout>

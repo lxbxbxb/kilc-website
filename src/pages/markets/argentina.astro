@@ -1,0 +1,80 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+import Hero from '../../components/Hero.astro';
+import DraftBanner from '../../components/DraftBanner.astro';
+import { t } from '../../i18n/utils';
+import { pagePath } from '../../i18n/pages';
+
+const locale = 'en';
+
+const sections = [
+  {
+    title: 'Foreign exchange controls',
+    body: "Argentina's foreign exchange market is regulated by the BCRA (Banco Central de la República Argentina). Rules on moving capital in and out of Argentina have changed frequently in recent years, so the applicable controls at the time of your transaction need to be confirmed with local counsel or an authorised exchange agent before any transfer is planned.",
+  },
+  {
+    title: 'Double taxation relief',
+    body: 'The UK and Argentina have a bilateral double taxation convention intended to prevent the same income being taxed twice. Whether — and how — it applies to your situation depends on your residency status and the structure used, and should be confirmed with a tax adviser qualified in both jurisdictions.',
+  },
+  {
+    title: 'Investor & business routes',
+    body: "UK immigration routes commonly used by international entrepreneurs and investors — such as the Innovator Founder route, Skilled Worker sponsorship, and Global Talent — are, in principle, open to Argentine nationals in the same way as other non-UK applicants. Eligibility depends on your specific circumstances.",
+  },
+  {
+    title: 'Company structuring',
+    body: 'Establishing a UK company as a subsidiary of, or alongside, an Argentine entity involves the same Companies House incorporation process as any other overseas parent, coordinated with your Argentine accountants and legal advisers on the local side of the structure.',
+  },
+];
+---
+
+<PageLayout
+  title="Argentina → UK: Cross-Border Compliance Guide (Draft) | KILC"
+  description="Foreign exchange rules, tax treaty considerations, and investor routes for Argentine individuals and businesses expanding to the UK. Draft — pending local legal review."
+>
+  <Hero
+    title="Argentina → UK"
+    subtitle="Foreign-exchange rules, tax treaty considerations, and investor visa routes for Argentine individuals and businesses expanding to the UK."
+    backgroundImage="/images/hero/white-concrete-building-near-road-during-daytime.jpg"
+    locale={locale}
+  />
+
+  <section class="py-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <DraftBanner locale={locale} />
+
+      <div class="text-center mb-16">
+        <p class="text-lg text-gray-600 leading-relaxed">
+          This guide outlines, at a general level, the areas an Argentine investor or business typically needs to consider when entering the UK market. It does not cover current specific rates, limits, or procedures — those change often and must be confirmed before you act on them.
+        </p>
+      </div>
+
+      <div class="space-y-12 mb-16">
+        {sections.map((section) => (
+          <div>
+            <h3 class="text-xl font-sans font-bold text-brand-dark mb-4">{section.title}</h3>
+            <p class="text-gray-600 leading-relaxed">{section.body}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="bg-brand-light rounded-lg p-10 text-center">
+        <h2 class="text-2xl font-sans font-bold text-brand-dark mb-4">Also relevant to you</h2>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a href={pagePath('companyFormation', locale)} class="text-brand-primary font-semibold hover:text-brand-secondary transition-colors">{t(locale, 'nav.companyFormation')} &rarr;</a>
+          <a href={pagePath('immigration', locale)} class="text-brand-primary font-semibold hover:text-brand-secondary transition-colors">{t(locale, 'nav.immigration')} &rarr;</a>
+          <a href={pagePath('globalMarket', locale)} class="text-brand-primary font-semibold hover:text-brand-secondary transition-colors">{t(locale, 'nav.globalMarket')} &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 cta-section">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h2 class="text-3xl font-sans font-bold mb-6">Ready to talk through your UK plans?</h2>
+      <p class="text-lg mb-8 text-white/90">Get in touch and we'll advise on your specific situation.</p>
+      <a href={pagePath('contact', locale)} class="inline-block bg-brand-primary text-brand-dark font-semibold px-8 py-3 rounded-lg hover:bg-brand-accent transition-colors">
+        {t(locale, 'nav.contact')}
+      </a>
+    </div>
+  </section>
+</PageLayout>

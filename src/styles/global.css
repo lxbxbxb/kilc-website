@@ -39,6 +39,15 @@
   color: #1C1A17;
 }
 
+/* Bilingual mode: a Tailwind display utility (e.g. "block") on a secondary
+   translation has the same specificity as the [hidden] attribute and would
+   otherwise win, since author styles beat the UA default even at equal
+   specificity — this keeps [hidden] authoritative until LanguagePicker's
+   script un-hides the chosen secondary language. */
+[data-i18n-lang][hidden] {
+  display: none !important;
+}
+
 /* Scroll reveal */
 .reveal {
   opacity: 0;

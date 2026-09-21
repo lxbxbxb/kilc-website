@@ -1,7 +1,7 @@
 {
   "site": {
     "title": "KILC - 客安国际法律咨询",
-    "description": "总部位于英国的法律咨询公司，帮助中国企业拓展英国市场"
+    "description": "跨境法律与合规咨询，协助来自世界各地的投资者在英国设立并运营业务。"
   },
   "nav": {
     "home": "首页",
@@ -16,13 +16,62 @@
     "fees": "费用",
     "programme": "护航计划",
     "careers": "职业机会",
+    "internship": "实习计划",
     "contact": "联系我们",
     "companyFormation": "公司注册",
     "xos": "XOS",
-    "blog": "博客"
+    "blog": "博客",
+    "markets": "目标市场"
   },
   "hero": {
-    "cta": "立即开始"
+    "cta": "立即开始",
+    "homeTitle": "为投资英国的跨境投资者提供合规支持",
+    "homeSubtitle": "无论您从哪里出发，我们都为个人与企业提供清晰的法律与监管指导，协助资金、人员或业务顺利进入英国。"
+  },
+  "stats": {
+    "heading": "为跨境投资者而建",
+    "regulatoryAreasValue": "6",
+    "regulatoryAreasLabel": "覆盖的英国监管与合规领域",
+    "templatesValue": "6",
+    "templatesLabel": "文件模板类别",
+    "marketsValue": "3",
+    "marketsLabel": "拥有专属指南的投资者市场",
+    "languagesValue": "4",
+    "languagesLabel": "支持的语言数量"
+  },
+  "markets": {
+    "selectorHeading": "您从哪里投资英国？",
+    "selectorSubheading": "选择您的出发地，查看与您相关的示例与架构。",
+    "viewFullGuide": "查看完整指南",
+    "genericNote": "我们尚未为该市场制作专属指南。以下通用指导同样适用，我们的团队也可以就您的具体情况提供建议。",
+    "draftNotice": "本市场指南为草稿，正在等待当地法律或税务顾问审核，请暂勿将其作为最终依据。",
+    "china": {
+      "name": "中国",
+      "tagline": "中国大陆及香港 → 英国",
+      "summary": "为中国大陆及香港投资者提供公司架构、资金调拨与移民路径方面的专业指导，协助其顺利进入英国市场。",
+      "example": "示例：深圳制造企业在英国设立子公司，同时协调国家外汇管理局（SAFE）的对外投资备案。"
+    },
+    "argentina": {
+      "name": "阿根廷",
+      "tagline": "阿根廷 → 英国",
+      "summary": "为阿根廷个人与企业拓展英国业务提供外汇管制、税收协定与投资者签证路径方面的指导。",
+      "example": "示例：阿根廷出口商在英国开设贸易实体，同时应对阿根廷中央银行（BCRA）的外汇管制要求。"
+    },
+    "malaysia": {
+      "name": "马来西亚",
+      "tagline": "马来西亚 → 英国",
+      "summary": "为马来西亚个人与企业进入英国提供资金管制、双重征税协定减免与投资路径方面的指导。",
+      "example": "示例：吉隆坡的家族办公室在英国设立控股公司，用于房地产投资。"
+    },
+    "singapore": { "name": "新加坡" },
+    "us": { "name": "美国" },
+    "other": { "name": "其他" }
+  },
+  "languagePicker": {
+    "label": "语言",
+    "bilingualToggle": "双语模式",
+    "bilingualOff": "关闭",
+    "bilingualHelp": "在{locale}旁显示第二语言"
   },
   "contact": {
     "name": "姓名",
@@ -40,7 +89,10 @@
     "cookies": "Cookie政策",
     "aml": "反洗钱政策",
     "ctf": "反恐融资政策",
-    "cookieSettings": "Cookie 设置"
+    "cookieSettings": "Cookie 设置",
+    "quickLinks": "快速链接",
+    "legal": "法律信息",
+    "wechat": "微信联系"
   },
   "cookieBanner": {
     "title": "Cookie 偏好设置",

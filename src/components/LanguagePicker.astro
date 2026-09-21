@@ -1,0 +1,107 @@
+---
+import { getAlternateUrl } from '../i18n/utils';
+import type { Locale } from '../i18n/utils';
+import { LOCALES, LOCALE_META } from '../i18n/locales';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const currentPath = Astro.url.pathname;
+const options = LOCALES.map((l) => ({
+  code: l,
+  nativeName: LOCALE_META[l].nativeName,
+  href: getAlternateUrl(currentPath, l),
+  current: l === locale,
+}));
+const bilingualOptions = LOCALES.filter((l) => l !== locale);
+---
+
+<div class="relative inline-block text-left" data-language-picker>
+  <details class="group">
+    <summary
+      class="list-none inline-flex items-center gap-1.5 px-3 py-1.5 text-sm font-medium rounded-md text-gray-700 hover:text-brand-primary hover:bg-gray-50 transition-colors cursor-pointer select-none"
+      aria-label="Language"
+    >
+      <span>{LOCALE_META[locale].nativeName}</span>
+      <svg class="w-3 h-3 transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+      </svg>
+    </summary>
+
+    <div class="absolute right-0 z-20 mt-2 w-56 origin-top-right rounded-lg bg-white shadow-lg ring-1 ring-black/5 p-3">
+      <p class="px-2 pb-1 text-xs font-semibold uppercase tracking-wider text-gray-400">Language</p>
+      <ul>
+        {options.map((opt) => (
+          <li>
+            <a
+              href={opt.href}
+              data-lang-link={opt.code}
+              aria-current={opt.current ? 'true' : undefined}
+              class:list={[
+                'block px-2 py-1.5 rounded text-sm transition-colors',
+                opt.current ? 'bg-brand-light text-brand-dark font-semibold' : 'text-gray-700 hover:bg-gray-50 hover:text-brand-primary',
+              ]}
+            >
+              {opt.nativeName}
+            </a>
+          </li>
+        ))}
+      </ul>
+
+      <div class="mt-3 pt-3 border-t border-gray-100">
+        <label for="bilingual-select" class="block px-2 pb-1 text-xs font-semibold uppercase tracking-wider text-gray-400">
+          Bilingual mode
+        </label>
+        <select
+          id="bilingual-select"
+          class="w-full text-sm border border-gray-200 rounded-md px-2 py-1.5 text-gray-700 focus:ring-2 focus:ring-brand-primary/20 focus:border-brand-primary outline-none"
+        >
+          <option value="">Off</option>
+          {bilingualOptions.map((l) => (
+            <option value={l}>{LOCALE_META[l].nativeName}</option>
+          ))}
+        </select>
+      </div>
+    </div>
+  </details>
+</div>
+
+<script>
+  // Remember an explicit language choice so the browser-language redirect on
+  // "/" never overrides it, and drive bilingual mode (pairing this page's
+  // language with a second one) via BilingualText's hidden twin elements.
+  document.querySelectorAll('[data-language-picker] [data-lang-link]').forEach((link) => {
+    link.addEventListener('click', () => {
+      const code = link.getAttribute('data-lang-link');
+      if (code) document.cookie = `kilc_lang=${code};path=/;max-age=31536000`;
+    });
+  });
+
+  function applyBilingual(secondary: string) {
+    document.querySelectorAll('[data-i18n-lang]').forEach((el) => {
+      (el as HTMLElement).hidden = el.getAttribute('data-i18n-lang') !== secondary;
+    });
+    document.documentElement.dataset.bilingual = secondary;
+  }
+
+  const select = document.getElementById('bilingual-select') as HTMLSelectElement | null;
+  if (select) {
+    try {
+      const stored = localStorage.getItem('kilc:bilingual') || '';
+      select.value = stored;
+      applyBilingual(stored);
+    } catch {
+      /* localStorage unavailable (private mode, etc.) — bilingual mode just stays off */
+    }
+    select.addEventListener('change', () => {
+      try {
+        localStorage.setItem('kilc:bilingual', select.value);
+      } catch {
+        /* ignore */
+      }
+      applyBilingual(select.value);
+    });
+  }
+</script>

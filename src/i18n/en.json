@@ -1,7 +1,7 @@
 {
   "site": {
     "title": "KILC - Keane International Legal Consultancy",
-    "description": "UK-based legal consultancy helping Chinese businesses expand to the UK"
+    "description": "Cross-border legal and compliance consultancy helping investors from around the world establish and operate in the UK."
   },
   "nav": {
     "home": "Home",
@@ -20,10 +20,58 @@
     "contact": "Contact",
     "companyFormation": "Company Formation",
     "xos": "XOS",
-    "blog": "Blog"
+    "blog": "Blog",
+    "markets": "Markets"
   },
   "hero": {
-    "cta": "Get Started"
+    "cta": "Get Started",
+    "homeTitle": "Cross-border compliance for investors entering the UK",
+    "homeSubtitle": "Clear legal and regulatory guidance for individuals and businesses moving capital, people, or operations into the UK — wherever you're investing from."
+  },
+  "stats": {
+    "heading": "Built for cross-border investors",
+    "regulatoryAreasValue": "6",
+    "regulatoryAreasLabel": "UK regulatory & compliance areas covered",
+    "templatesValue": "6",
+    "templatesLabel": "Document template categories",
+    "marketsValue": "3",
+    "marketsLabel": "Investor markets with dedicated guides",
+    "languagesValue": "4",
+    "languagesLabel": "Languages supported"
+  },
+  "markets": {
+    "selectorHeading": "Where are you investing from?",
+    "selectorSubheading": "Pick your starting point to see examples and structures relevant to you.",
+    "viewFullGuide": "View full guide",
+    "genericNote": "We don't yet have a dedicated guide for this market. The general guidance below applies, and our team can advise on your specific situation.",
+    "draftNotice": "This market guide is a draft. It is pending review by a local legal or tax adviser and should not be relied on as final guidance yet.",
+    "china": {
+      "name": "China",
+      "tagline": "Mainland China & Hong Kong to UK",
+      "summary": "Company structuring, capital transfer, and immigration routes for mainland Chinese and Hong Kong investors entering the UK.",
+      "example": "Example: setting up a UK subsidiary of a Shenzhen manufacturer while coordinating SAFE outbound investment filings."
+    },
+    "argentina": {
+      "name": "Argentina",
+      "tagline": "Argentina to UK",
+      "summary": "Foreign-exchange rules, tax treaty considerations, and investor visa routes for Argentine individuals and businesses expanding to the UK.",
+      "example": "Example: an Argentine exporter opening a UK trading entity while navigating BCRA foreign-exchange controls."
+    },
+    "malaysia": {
+      "name": "Malaysia",
+      "tagline": "Malaysia to UK",
+      "summary": "Capital controls, double-tax treaty relief, and investor pathways for Malaysian individuals and businesses entering the UK.",
+      "example": "Example: a Kuala Lumpur-based family office establishing a UK holding company for property investment."
+    },
+    "singapore": { "name": "Singapore" },
+    "us": { "name": "United States" },
+    "other": { "name": "Other" }
+  },
+  "languagePicker": {
+    "label": "Language",
+    "bilingualToggle": "Bilingual mode",
+    "bilingualOff": "Off",
+    "bilingualHelp": "Show a second language alongside {locale}"
   },
   "contact": {
     "name": "Name",
@@ -35,3 +83,27 @@
   },
   "footer": {
     "address": "128 City Road, London EC1V 2NX",
+    "email": "info@kilc.co.uk",
+    "rights": "All rights reserved.",
+    "privacy": "Privacy Policy",
+    "cookies": "Cookie Policy",
+    "aml": "AML Policy",
+    "ctf": "Counter-Terrorism Financing Policy",
+    "cookieSettings": "Cookie Settings",
+    "quickLinks": "Quick Links",
+    "legal": "Legal",
+    "wechat": "WeChat"
+  },
+  "cookieBanner": {
+    "title": "Cookie Preferences",
+    "message": "We use cookies to analyse site traffic and improve your experience. Analytics data is stored on our own servers and never shared with third parties.",
+    "learnMore": "Cookie Policy",
+    "accept": "Accept Analytics Cookies",
+    "decline": "Necessary Cookies Only"
+  },
+  "chat": {
+    "title": "Chat with us",
+    "placeholder": "Type your message...",
+    "send": "Send"
+  }
+}

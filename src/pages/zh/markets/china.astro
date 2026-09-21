@@ -1,0 +1,82 @@
+---
+import PageLayout from '../../../layouts/PageLayout.astro';
+import Hero from '../../../components/Hero.astro';
+import { t } from '../../../i18n/utils';
+import { pagePath } from '../../../i18n/pages';
+
+const locale = 'zh';
+
+const sections = [
+  {
+    title: '公司架构设计',
+    body: '无论您是要为中国大陆或香港公司在英国设立全资子公司，还是成立独立的英国实体，我们都会协调公司注册、注册地址及 Companies House 备案事宜，确保与您在国内的现有公司架构保持一致。',
+  },
+  {
+    title: '跨境资金调拨',
+    body: '将资金从中国大陆或香港转入英国，需要与您的银行协调，对于中国大陆客户而言，还需要办理国家外汇管理局（SAFE）的对外投资备案。我们会与您的会计师，以及在需要大陆审批时与您的境内律师协同工作，确保英国这一端的交易准备就绪。',
+  },
+  {
+    title: '移民路径规划',
+    body: '从面向创业者的 Innovator Founder 签证，到 Skilled Worker 担保签证及家庭签证，我们会根据您的商业计划与个人情况，为您提供合适的移民路径建议。',
+  },
+  {
+    title: '房产与投资保护',
+    body: '我们协助处理英国与中国法律体系在房地产与投资交易方面的差异，提供双语文件，并与英国当地合作伙伴（测量师、产权律师、中介）协调，确保交易顺利推进。',
+  },
+  {
+    title: '双语文件支持',
+    body: '合同、合规政策及监管备案文件在必要时会同时准备中英文版本，确保各方——包括监管机构——都能直接阅读并理解文件内容。',
+  },
+];
+---
+
+<PageLayout
+  title="中国 → 英国：跨境合规指南 | KILC"
+  description="为中国大陆及香港投资者提供公司架构、资金调拨、移民路径与投资保护方面的英国跨境合规指导。"
+>
+  <Hero
+    title="中国 → 英国"
+    subtitle="为中国大陆及香港投资者提供公司架构、资金调拨、移民路径与投资保护方面的英国跨境合规指导。"
+    backgroundImage="/images/hero/an-aerial-view-of-a-city-with-tall-buildings.jpg"
+    locale={locale}
+  />
+
+  <section class="py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="max-w-3xl mx-auto text-center mb-16">
+        <p class="text-lg text-gray-600 leading-relaxed">
+          自成立以来，KILC 一直为中国大陆及香港客户提供英国市场准入方面的咨询服务——本页面汇集了这些经验，涵盖从公司注册到日常合规的方方面面。
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-16 mb-16">
+        {sections.map((section) => (
+          <div>
+            <h3 class="text-xl font-sans font-bold text-brand-dark mb-4">{section.title}</h3>
+            <p class="text-gray-600 leading-relaxed">{section.body}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="max-w-3xl mx-auto bg-brand-light rounded-lg p-10 text-center">
+        <h2 class="text-2xl font-sans font-bold text-brand-dark mb-4">您可能还关心</h2>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a href={pagePath('companyFormation', locale)} class="text-brand-primary font-semibold hover:text-brand-secondary transition-colors">{t(locale, 'nav.companyFormation')} &rarr;</a>
+          <a href={pagePath('immigration', locale)} class="text-brand-primary font-semibold hover:text-brand-secondary transition-colors">{t(locale, 'nav.immigration')} &rarr;</a>
+          <a href={pagePath('estateInvestment', locale)} class="text-brand-primary font-semibold hover:text-brand-secondary transition-colors">{t(locale, 'nav.estateInvestment')} &rarr;</a>
+          <a href={pagePath('studentServices', locale)} class="text-brand-primary font-semibold hover:text-brand-secondary transition-colors">{t(locale, 'nav.studentServices')} &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 cta-section">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h2 class="text-3xl font-sans font-bold mb-6">准备好将您的业务带到英国了吗？</h2>
+      <p class="text-lg mb-8 text-white/90">立即联系我们的团队——我们提供中英双语服务。</p>
+      <a href={pagePath('contact', locale)} class="inline-block bg-brand-primary text-brand-dark font-semibold px-8 py-3 rounded-lg hover:bg-brand-accent transition-colors">
+        {t(locale, 'nav.contact')}
+      </a>
+    </div>
+  </section>
+</PageLayout>

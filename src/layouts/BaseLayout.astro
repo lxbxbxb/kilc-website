@@ -2,6 +2,7 @@
 import '../styles/global.css';
 import { getLocaleFromUrl, getAlternateUrl, t } from '../i18n/utils';
 import type { Locale } from '../i18n/utils';
+import { LOCALES, LOCALE_META, DEFAULT_LOCALE } from '../i18n/locales';
 import CookieBanner from '../components/CookieBanner.astro';
 
 interface Props {
@@ -29,14 +30,40 @@ const {
 } = Astro.props;
 
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
-const alternateLocale = locale === 'en' ? 'zh' : 'en';
-const alternatePath = getAlternateUrl(Astro.url.pathname, locale);
-const alternateUrl = new URL(alternatePath, Astro.site);
+const localeMeta = LOCALE_META[locale];
+const alternateLinks = LOCALES.map((l) => ({
+  hreflang: LOCALE_META[l].htmlLang,
+  href: new URL(getAlternateUrl(Astro.url.pathname, l), Astro.site).href,
+}));
+const xDefaultHref = new URL(getAlternateUrl(Astro.url.pathname, DEFAULT_LOCALE), Astro.site).href;
 ---
 
 <!doctype html>
-<html lang={locale === 'zh' ? 'zh-CN' : 'en-GB'} class="scroll-smooth">
+<html lang={localeMeta.htmlLang} class="scroll-smooth">
   <head>
+    <!-- Pick a language from the browser's setting on first visit to the
+         unprefixed home page, unless the visitor already chose one via the
+         language picker (kilc_lang cookie). Never overrides an explicit
+         choice or a page the visitor navigated to directly. -->
+    <script is:inline>
+      (function () {
+        try {
+          if (window.location.pathname !== '/') return;
+          if (document.cookie.indexOf('kilc_lang=') !== -1) return;
+          var supported = ['en', 'zh', 'es', 'ms'];
+          var prefixes = { zh: '/zh', es: '/es', ms: '/ms' };
+          var langs = navigator.languages && navigator.languages.length ? navigator.languages : [navigator.language || 'en'];
+          var match = 'en';
+          for (var i = 0; i < langs.length; i++) {
+            var l = String(langs[i]).toLowerCase();
+            var found = supported.find(function (s) { return l === s || l.indexOf(s + '-') === 0; });
+            if (found) { match = found; break; }
+          }
+          if (prefixes[match]) window.location.replace(prefixes[match]);
+        } catch (e) {}
+      })();
+    </script>
+
     <!-- Performance hints -->
     <link rel="preconnect" href="https://analytics.kilc.co.uk" />
 
@@ -47,10 +74,12 @@ const alternateUrl = new URL(alternatePath, Astro.site);
     <title>{title}</title>
     <meta name="description" content={description} />
 
-    <!-- Canonical & hreflang -->
+    <!-- Canonical & hreflang (one per supported language, plus x-default) -->
     <link rel="canonical" href={canonicalUrl.href} />
-    <link rel="alternate" hreflang={locale === 'en' ? 'en-GB' : 'zh-Hans'} href={canonicalUrl.href} />
-    <link rel="alternate" hreflang={alternateLocale === 'en' ? 'en-GB' : 'zh-Hans'} href={alternateUrl.href} />
+    {alternateLinks.map((alt) => (
+      <link rel="alternate" hreflang={alt.hreflang} href={alt.href} />
+    ))}
+    <link rel="alternate" hreflang="x-default" href={xDefaultHref} />
 
     <!-- Open Graph -->
     <meta property="og:type" content={ogType} />
@@ -61,7 +90,10 @@ const alternateUrl = new URL(alternatePath, Astro.site);
     <meta property="og:image" content={new URL(ogImage, Astro.site).href} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:locale" content={locale === 'zh' ? 'zh_CN' : 'en_GB'} />
+    <meta property="og:locale" content={localeMeta.ogLocale} />
+    {LOCALES.filter((l) => l !== locale).map((l) => (
+      <meta property="og:locale:alternate" content={LOCALE_META[l].ogLocale} />
+    ))}
 
     <!-- Article meta (blog posts only) -->
     {articleMeta && (
@@ -93,8 +125,8 @@ const alternateUrl = new URL(alternatePath, Astro.site);
       "alternateName": "KILC",
       "url": "https://kilc.co.uk",
       "logo": "https://kilc.co.uk/images/general/kilc-logo-colour-transparent.png",
-      "description": "UK-based legal consultancy helping Chinese businesses and individuals expand to the UK",
-      "areaServed": ["GB", "CN"],
+      "description": "Cross-border legal and compliance consultancy helping investors from around the world establish and operate in the UK",
+      "areaServed": ["GB", "CN", "AR", "MY"],
       "serviceType": "Legal Consultancy"
     })} />
 

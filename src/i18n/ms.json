@@ -1,0 +1,109 @@
+{
+  "site": {
+    "title": "KILC - Keane International Legal Consultancy",
+    "description": "Perundingan undang-undang dan pematuhan rentas sempadan untuk pelabur dari seluruh dunia yang menubuhkan dan beroperasi di United Kingdom."
+  },
+  "nav": {
+    "home": "Laman Utama",
+    "about": "Mengenai Kami",
+    "people": "Pasukan Kami",
+    "services": "Perkhidmatan",
+    "globalMarket": "Navigasi Pasaran Global",
+    "immigration": "Imigresen",
+    "criminal": "Jenayah",
+    "studentServices": "Perkhidmatan Pelajar",
+    "estateInvestment": "Hartanah & Pelaburan",
+    "fees": "Yuran",
+    "programme": "Program",
+    "careers": "Kerjaya",
+    "internship": "Program Latihan Industri",
+    "contact": "Hubungi Kami",
+    "companyFormation": "Penubuhan Syarikat",
+    "xos": "XOS",
+    "blog": "Blog",
+    "markets": "Pasaran"
+  },
+  "hero": {
+    "cta": "Mulakan",
+    "homeTitle": "Pematuhan rentas sempadan untuk pelabur yang memasuki UK",
+    "homeSubtitle": "Panduan undang-undang dan kawal selia yang jelas untuk individu dan perniagaan yang memindahkan modal, kakitangan, atau operasi ke UK — tidak kira dari mana anda melabur."
+  },
+  "stats": {
+    "heading": "Direka untuk pelabur rentas sempadan",
+    "regulatoryAreasValue": "6",
+    "regulatoryAreasLabel": "Bidang kawal selia & pematuhan UK yang diliputi",
+    "templatesValue": "6",
+    "templatesLabel": "Kategori templat dokumen",
+    "marketsValue": "3",
+    "marketsLabel": "Pasaran pelabur dengan panduan khusus",
+    "languagesValue": "4",
+    "languagesLabel": "Bahasa yang disokong"
+  },
+  "markets": {
+    "selectorHeading": "Anda melabur dari mana?",
+    "selectorSubheading": "Pilih titik permulaan anda untuk melihat contoh dan struktur yang berkaitan dengan anda.",
+    "viewFullGuide": "Lihat panduan penuh",
+    "genericNote": "Kami belum mempunyai panduan khusus untuk pasaran ini. Panduan am di bawah masih terpakai, dan pasukan kami boleh menasihati anda mengenai situasi khusus anda.",
+    "draftNotice": "Panduan pasaran ini adalah draf. Ia masih menunggu semakan oleh penasihat undang-undang atau cukai tempatan dan tidak seharusnya dijadikan panduan muktamad buat masa ini.",
+    "china": {
+      "name": "China",
+      "tagline": "China Tanah Besar & Hong Kong → UK",
+      "summary": "Penstrukturan syarikat, pemindahan modal, dan laluan imigresen untuk pelabur dari China Tanah Besar dan Hong Kong yang memasuki UK.",
+      "example": "Contoh: menubuhkan anak syarikat UK bagi sebuah pengilang di Shenzhen sambil menyelaraskan permohonan pelaburan keluar SAFE."
+    },
+    "argentina": {
+      "name": "Argentina",
+      "tagline": "Argentina → UK",
+      "summary": "Peraturan pertukaran asing, pertimbangan perjanjian percukaian, dan laluan visa pelabur untuk individu dan perniagaan Argentina yang berkembang ke UK.",
+      "example": "Contoh: pengeksport Argentina membuka entiti perdagangan di UK sambil menguruskan kawalan pertukaran asing BCRA."
+    },
+    "malaysia": {
+      "name": "Malaysia",
+      "tagline": "Malaysia → UK",
+      "summary": "Kawalan modal, pelepasan perjanjian percukaian dua hala, dan laluan pelaburan untuk individu dan perniagaan Malaysia yang memasuki UK.",
+      "example": "Contoh: sebuah pejabat keluarga di Kuala Lumpur menubuhkan syarikat pegangan di UK untuk pelaburan hartanah."
+    },
+    "singapore": { "name": "Singapura" },
+    "us": { "name": "Amerika Syarikat" },
+    "other": { "name": "Lain-lain" }
+  },
+  "languagePicker": {
+    "label": "Bahasa",
+    "bilingualToggle": "Mod dwibahasa",
+    "bilingualOff": "Mati",
+    "bilingualHelp": "Papar bahasa kedua bersebelahan {locale}"
+  },
+  "contact": {
+    "name": "Nama",
+    "email": "E-mel",
+    "message": "Mesej",
+    "send": "Hantar Mesej",
+    "success": "Mesej anda telah berjaya dihantar.",
+    "error": "Ralat berlaku semasa menghantar mesej anda. Sila cuba lagi."
+  },
+  "footer": {
+    "address": "128 City Road, London EC1V 2NX",
+    "email": "info@kilc.co.uk",
+    "rights": "Hak cipta terpelihara.",
+    "privacy": "Dasar Privasi",
+    "cookies": "Dasar Kuki",
+    "aml": "Dasar Anti Pengubahan Wang Haram",
+    "ctf": "Dasar Pembiayaan Anti-Keganasan",
+    "cookieSettings": "Tetapan Kuki",
+    "quickLinks": "Pautan Pantas",
+    "legal": "Undang-undang",
+    "wechat": "WeChat"
+  },
+  "cookieBanner": {
+    "title": "Keutamaan Kuki",
+    "message": "Kami menggunakan kuki untuk menganalisis trafik laman dan menambah baik pengalaman anda. Data analitik disimpan di pelayan kami sendiri dan tidak sekali-kali dikongsi dengan pihak ketiga.",
+    "learnMore": "Dasar Kuki",
+    "accept": "Terima Kuki Analitik",
+    "decline": "Kuki Perlu Sahaja"
+  },
+  "chat": {
+    "title": "Berbual dengan kami",
+    "placeholder": "Taip mesej anda...",
+    "send": "Hantar"
+  }
+}

@@ -1,0 +1,109 @@
+{
+  "site": {
+    "title": "KILC - Keane International Legal Consultancy",
+    "description": "Consultoría legal y de cumplimiento transfronterizo para inversores de todo el mundo que se establecen y operan en el Reino Unido."
+  },
+  "nav": {
+    "home": "Inicio",
+    "about": "Nosotros",
+    "people": "Equipo",
+    "services": "Servicios",
+    "globalMarket": "Navegación de Mercados Globales",
+    "immigration": "Inmigración",
+    "criminal": "Derecho Penal",
+    "studentServices": "Servicios para Estudiantes",
+    "estateInvestment": "Inmuebles e Inversión",
+    "fees": "Honorarios",
+    "programme": "Programa",
+    "careers": "Empleo",
+    "internship": "Programa de Prácticas",
+    "contact": "Contacto",
+    "companyFormation": "Constitución de Empresas",
+    "xos": "XOS",
+    "blog": "Blog",
+    "markets": "Mercados"
+  },
+  "hero": {
+    "cta": "Comenzar",
+    "homeTitle": "Cumplimiento transfronterizo para inversores que llegan al Reino Unido",
+    "homeSubtitle": "Orientación legal y regulatoria clara para personas y empresas que trasladan capital, personal u operaciones al Reino Unido, sea cual sea su punto de partida."
+  },
+  "stats": {
+    "heading": "Diseñado para inversores transfronterizos",
+    "regulatoryAreasValue": "6",
+    "regulatoryAreasLabel": "Áreas regulatorias y de cumplimiento del Reino Unido cubiertas",
+    "templatesValue": "6",
+    "templatesLabel": "Categorías de plantillas de documentos",
+    "marketsValue": "3",
+    "marketsLabel": "Mercados de inversores con guías dedicadas",
+    "languagesValue": "4",
+    "languagesLabel": "Idiomas disponibles"
+  },
+  "markets": {
+    "selectorHeading": "¿Desde dónde está invirtiendo?",
+    "selectorSubheading": "Elija su punto de partida para ver ejemplos y estructuras relevantes para usted.",
+    "viewFullGuide": "Ver guía completa",
+    "genericNote": "Todavía no tenemos una guía dedicada para este mercado. La orientación general a continuación también aplica, y nuestro equipo puede asesorarle sobre su situación específica.",
+    "draftNotice": "Esta guía de mercado es un borrador. Está pendiente de revisión por un asesor legal o fiscal local y todavía no debe tomarse como orientación definitiva.",
+    "china": {
+      "name": "China",
+      "tagline": "China continental y Hong Kong → Reino Unido",
+      "summary": "Estructuración societaria, transferencia de capital y vías migratorias para inversores de China continental y Hong Kong que entran al Reino Unido.",
+      "example": "Ejemplo: constituir una filial en el Reino Unido de un fabricante de Shenzhen coordinando las declaraciones de inversión saliente ante la SAFE."
+    },
+    "argentina": {
+      "name": "Argentina",
+      "tagline": "Argentina → Reino Unido",
+      "summary": "Normativa cambiaria, consideraciones del convenio de doble imposición y vías de visado para inversores argentinos que se expanden al Reino Unido.",
+      "example": "Ejemplo: un exportador argentino que abre una entidad comercial en el Reino Unido mientras gestiona los controles cambiarios del BCRA."
+    },
+    "malaysia": {
+      "name": "Malasia",
+      "tagline": "Malasia → Reino Unido",
+      "summary": "Controles de capital, alivio por convenio de doble imposición y vías de inversión para personas y empresas malasias que entran al Reino Unido.",
+      "example": "Ejemplo: una family office de Kuala Lumpur que constituye una sociedad holding en el Reino Unido para inversión inmobiliaria."
+    },
+    "singapore": { "name": "Singapur" },
+    "us": { "name": "Estados Unidos" },
+    "other": { "name": "Otro" }
+  },
+  "languagePicker": {
+    "label": "Idioma",
+    "bilingualToggle": "Modo bilingüe",
+    "bilingualOff": "Desactivado",
+    "bilingualHelp": "Mostrar un segundo idioma junto a {locale}"
+  },
+  "contact": {
+    "name": "Nombre",
+    "email": "Correo electrónico",
+    "message": "Mensaje",
+    "send": "Enviar Mensaje",
+    "success": "Su mensaje se ha enviado correctamente.",
+    "error": "Hubo un error al enviar su mensaje. Por favor, inténtelo de nuevo."
+  },
+  "footer": {
+    "address": "128 City Road, London EC1V 2NX",
+    "email": "info@kilc.co.uk",
+    "rights": "Todos los derechos reservados.",
+    "privacy": "Política de Privacidad",
+    "cookies": "Política de Cookies",
+    "aml": "Política Anti-Blanqueo (AML)",
+    "ctf": "Política de Financiación del Terrorismo",
+    "cookieSettings": "Preferencias de Cookies",
+    "quickLinks": "Enlaces Rápidos",
+    "legal": "Legal",
+    "wechat": "WeChat"
+  },
+  "cookieBanner": {
+    "title": "Preferencias de Cookies",
+    "message": "Utilizamos cookies para analizar el tráfico del sitio y mejorar su experiencia. Los datos de análisis se almacenan en nuestros propios servidores y nunca se comparten con terceros.",
+    "learnMore": "Política de Cookies",
+    "accept": "Aceptar Cookies de Análisis",
+    "decline": "Solo Cookies Necesarias"
+  },
+  "chat": {
+    "title": "Chatear con nosotros",
+    "placeholder": "Escriba su mensaje...",
+    "send": "Enviar"
+  }
+}

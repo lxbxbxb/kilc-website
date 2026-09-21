@@ -1,6 +1,8 @@
 ---
 import PageLayout from '../../layouts/PageLayout.astro';
 import Hero from '../../components/Hero.astro';
+import StatsBar from '../../components/StatsBar.astro';
+import MarketSelector from '../../components/MarketSelector.astro';
 import { t } from '../../i18n/utils';
 
 const locale = 'zh';
@@ -11,11 +13,25 @@ const locale = 'zh';
   description={t(locale, 'site.description')}
 >
   <Hero
-    title="客安国际法律咨询"
-    subtitle="您值得信赖的英国商业拓展合作伙伴"
+    title={t(locale, 'hero.homeTitle')}
+    subtitle={t(locale, 'hero.homeSubtitle')}
+    titleKey="hero.homeTitle"
+    subtitleKey="hero.homeSubtitle"
+    backgroundVideo="/video/homepage-hd_1280_720_25fps.mp4"
+    backgroundImage="/images/hero/an-aerial-view-of-a-city-with-tall-buildings.jpg"
     cta={{ text: t(locale, 'hero.cta'), href: '/zh/contact-us' }}
+    showCta={false}
     locale={locale}
   />
+
+  <StatsBar locale={locale} />
+
+  <!-- Where are you investing from? -->
+  <section class="py-20 bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <MarketSelector locale={locale} />
+    </div>
+  </section>
 
   <!-- Services Overview -->
   <section class="py-20 bg-brand-light">

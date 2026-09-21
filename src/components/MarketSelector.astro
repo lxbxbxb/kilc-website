@@ -1,0 +1,116 @@
+---
+// "Where are you investing from?" — an interactive, JS-free market picker
+// (radio inputs + sibling CSS) that swaps the examples and structure shown
+// per market, plus links out to the full dedicated guide where one exists.
+import { t } from '../i18n/utils';
+import type { Locale } from '../i18n/utils';
+import { pagePath, hasTranslation } from '../i18n/pages';
+import BilingualText from './BilingualText.astro';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+const dedicated = [
+  { id: 'china', pageId: 'marketChina' as const },
+  { id: 'argentina', pageId: 'marketArgentina' as const },
+  { id: 'malaysia', pageId: 'marketMalaysia' as const },
+];
+const generic = ['singapore', 'us', 'other'] as const;
+
+const markets = [
+  ...dedicated.map((m) => ({
+    id: m.id,
+    name: t(locale, `markets.${m.id}.name`),
+    tagline: t(locale, `markets.${m.id}.tagline`),
+    summary: t(locale, `markets.${m.id}.summary`),
+    example: t(locale, `markets.${m.id}.example`),
+    href: pagePath(m.pageId, locale),
+    translated: hasTranslation(m.pageId, locale),
+    dedicated: true,
+  })),
+  ...generic.map((id) => ({
+    id,
+    name: t(locale, `markets.${id}.name`),
+    tagline: '',
+    summary: '',
+    example: '',
+    href: pagePath('contact', locale),
+    translated: false,
+    dedicated: false,
+  })),
+];
+---
+
+<div class="market-selector">
+  <div class="text-center mb-10">
+    <BilingualText path="markets.selectorHeading" locale={locale} as="h2" class="text-3xl font-sans font-bold text-brand-dark mb-3" />
+    <BilingualText path="markets.selectorSubheading" locale={locale} as="p" class="text-gray-600 max-w-2xl mx-auto" />
+  </div>
+
+  {markets.map((m, i) => (
+    <input type="radio" name="market-tab" id={`market-${m.id}`} class="hidden" checked={i === 0} />
+  ))}
+
+  <div class="tabs flex flex-wrap justify-center gap-2 mb-8">
+    {markets.map((m) => (
+      <label for={`market-${m.id}`} data-tab={m.id} class="tab-label cursor-pointer px-4 py-2 rounded-full border border-gray-200 text-sm font-medium text-gray-600 hover:border-brand-primary hover:text-brand-primary transition-colors">
+        {m.name}
+      </label>
+    ))}
+  </div>
+
+  <div class="panels max-w-3xl mx-auto">
+    {markets.map((m) => (
+      <div data-panel={m.id} class="panel hidden bg-white rounded-lg border border-gray-100 shadow-sm p-8">
+        {m.dedicated ? (
+          <>
+            <p class="text-sm font-semibold text-brand-primary uppercase tracking-wider mb-2">{m.tagline}</p>
+            <p class="text-gray-600 leading-relaxed mb-4">{m.summary}</p>
+            <p class="text-sm text-gray-500 italic mb-6">{m.example}</p>
+            {!m.translated && (
+              <p class="text-xs text-gray-400 mb-4">{t(locale, 'markets.draftNotice')}</p>
+            )}
+            <a href={m.href} class="inline-block text-brand-primary font-semibold hover:text-brand-secondary transition-colors">
+              {t(locale, 'markets.viewFullGuide')} &rarr;
+            </a>
+          </>
+        ) : (
+          <>
+            <p class="text-gray-600 leading-relaxed mb-6">{t(locale, 'markets.genericNote')}</p>
+            <a href={m.href} class="inline-block text-brand-primary font-semibold hover:text-brand-secondary transition-colors">
+              {t(locale, 'nav.contact')} &rarr;
+            </a>
+          </>
+        )}
+      </div>
+    ))}
+  </div>
+</div>
+
+<style>
+  .panel { display: none; }
+  .tab-label { display: inline-block; }
+
+  #market-china:checked ~ .tabs label[for="market-china"],
+  #market-argentina:checked ~ .tabs label[for="market-argentina"],
+  #market-malaysia:checked ~ .tabs label[for="market-malaysia"],
+  #market-singapore:checked ~ .tabs label[for="market-singapore"],
+  #market-us:checked ~ .tabs label[for="market-us"],
+  #market-other:checked ~ .tabs label[for="market-other"] {
+    border-color: #C5A059;
+    color: #C5A059;
+    background-color: #F8F6F2;
+  }
+
+  #market-china:checked ~ .panels [data-panel="china"],
+  #market-argentina:checked ~ .panels [data-panel="argentina"],
+  #market-malaysia:checked ~ .panels [data-panel="malaysia"],
+  #market-singapore:checked ~ .panels [data-panel="singapore"],
+  #market-us:checked ~ .panels [data-panel="us"],
+  #market-other:checked ~ .panels [data-panel="other"] {
+    display: block;
+  }
+</style>

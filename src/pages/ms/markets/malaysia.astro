@@ -1,0 +1,83 @@
+---
+// NOTE: machine-drafted Bahasa Malaysia — needs both a native-speaker
+// proofread and local Malaysian legal/tax review before this page leaves
+// draft status.
+import PageLayout from '../../../layouts/PageLayout.astro';
+import Hero from '../../../components/Hero.astro';
+import DraftBanner from '../../../components/DraftBanner.astro';
+import { t } from '../../../i18n/utils';
+import { pagePath } from '../../../i18n/pages';
+
+const locale = 'ms';
+
+const sections = [
+  {
+    title: 'Kawalan modal & pertukaran asing',
+    body: 'Peraturan pentadbiran pertukaran asing Malaysia ditetapkan oleh Bank Negara Malaysia (BNM). Keperluan untuk memindahkan dana keluar dari Malaysia bagi tujuan pelaburan di luar negara bergantung kepada jumlah, sumber dana, dan status kediaman pihak yang terlibat, dan perlu disahkan bersama penasihat berlesen BNM sebelum sebarang pemindahan dirancang.',
+  },
+  {
+    title: 'Pelepasan percukaian dua hala',
+    body: 'UK dan Malaysia mempunyai perjanjian percukaian dua hala yang bertujuan mengelakkan pendapatan yang sama dikenakan cukai di kedua-dua negara. Sama ada — dan bagaimana — ia terpakai kepada situasi anda bergantung kepada status kediaman cukai anda dan struktur yang digunakan, dan perlu disahkan bersama penasihat cukai yang berkelayakan di kedua-dua bidang kuasa.',
+  },
+  {
+    title: 'Laluan pelabur & perniagaan',
+    body: 'Laluan imigresen UK yang biasa digunakan oleh usahawan dan pelabur antarabangsa — seperti laluan Innovator Founder, penajaan Skilled Worker, dan Global Talent — pada dasarnya terbuka kepada warganegara Malaysia sama seperti pemohon bukan UK yang lain. Kelayakan bergantung kepada keadaan khusus anda.',
+  },
+  {
+    title: 'Penstrukturan syarikat',
+    body: 'Menubuhkan syarikat UK sebagai anak syarikat kepada, atau bersama, entiti Malaysia — termasuk bagi pejabat keluarga atau struktur pegangan persendirian — melibatkan proses penubuhan Companies House yang sama seperti mana-mana syarikat induk luar negara lain, diselaraskan dengan akauntan dan penasihat undang-undang Malaysia anda untuk bahagian tempatan struktur tersebut.',
+  },
+];
+---
+
+<PageLayout
+  title="Malaysia → UK: Panduan Pematuhan Rentas Sempadan (Draf) | KILC"
+  description="Kawalan modal, pelepasan perjanjian percukaian dua hala, dan laluan pelaburan untuk individu dan perniagaan Malaysia yang memasuki UK. Draf — menunggu semakan undang-undang tempatan."
+>
+  <Hero
+    title="Malaysia → UK"
+    subtitle="Kawalan modal, pelepasan perjanjian percukaian dua hala, dan laluan pelaburan untuk individu dan perniagaan Malaysia yang memasuki UK."
+    backgroundImage="/images/hero/white-concrete-building-near-road-during-daytime.jpg"
+    locale={locale}
+  />
+
+  <section class="py-20">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <DraftBanner locale={locale} />
+
+      <div class="text-center mb-16">
+        <p class="text-lg text-gray-600 leading-relaxed">
+          Panduan ini menggariskan, secara umum, bidang-bidang yang biasanya perlu dipertimbangkan oleh pelabur atau perniagaan Malaysia semasa memasuki pasaran UK. Ia tidak meliputi kadar, had, atau prosedur khusus semasa — perkara ini sering berubah dan mesti disahkan sebelum anda bertindak berdasarkannya.
+        </p>
+      </div>
+
+      <div class="space-y-12 mb-16">
+        {sections.map((section) => (
+          <div>
+            <h3 class="text-xl font-sans font-bold text-brand-dark mb-4">{section.title}</h3>
+            <p class="text-gray-600 leading-relaxed">{section.body}</p>
+          </div>
+        ))}
+      </div>
+
+      <div class="bg-brand-light rounded-lg p-10 text-center">
+        <h2 class="text-2xl font-sans font-bold text-brand-dark mb-4">Turut berkaitan dengan anda</h2>
+        <div class="flex flex-wrap justify-center gap-4">
+          <a href={pagePath('companyFormation', locale)} class="text-brand-primary font-semibold hover:text-brand-secondary transition-colors">{t(locale, 'nav.companyFormation')} &rarr;</a>
+          <a href={pagePath('immigration', locale)} class="text-brand-primary font-semibold hover:text-brand-secondary transition-colors">{t(locale, 'nav.immigration')} &rarr;</a>
+          <a href={pagePath('estateInvestment', locale)} class="text-brand-primary font-semibold hover:text-brand-secondary transition-colors">{t(locale, 'nav.estateInvestment')} &rarr;</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 cta-section">
+    <div class="max-w-4xl mx-auto px-4 text-center">
+      <h2 class="text-3xl font-sans font-bold mb-6">Bersedia untuk membincangkan rancangan UK anda?</h2>
+      <p class="text-lg mb-8 text-white/90">Hubungi kami dan kami akan menasihati anda berdasarkan situasi khusus anda.</p>
+      <a href={pagePath('contact', locale)} class="inline-block bg-brand-primary text-brand-dark font-semibold px-8 py-3 rounded-lg hover:bg-brand-accent transition-colors">
+        {t(locale, 'nav.contact')}
+      </a>
+    </div>
+  </section>
+</PageLayout>

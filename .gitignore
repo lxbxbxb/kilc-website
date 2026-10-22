@@ -25,3 +25,7 @@ pnpm-debug.log*
 # OS
 .DS_Store
 Thumbs.db
+
+# Cloudflare Pages local dev
+.dev.vars
+.wrangler/

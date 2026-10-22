@@ -1,10 +1,16 @@
-name: Deploy Website
+name: Build Website
 
 on:
   push:
     branches: [main]
   pull_request:
     branches: [main]
+
+# Deployment is handled by Cloudflare Pages (Git integration on the
+# kilc-website project): every push to main builds and publishes
+# kilc.co.uk, and every pull request gets a preview URL. This workflow
+# only type-checks and builds, so a broken change shows up on the PR.
+# See docs/CLOUDFLARE_PAGES.md.
 
 jobs:
   build:
@@ -29,75 +35,3 @@ jobs:
 
       - name: Build Astro site
         run: npm run build
-
-      - name: Upload dist artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: dist
-          path: dist/
-          retention-days: 1
-
-  deploy:
-    name: Deploy to VPS
-    runs-on: ubuntu-latest
-    needs: build
-    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
-    steps:
-      - uses: actions/checkout@v4
-
-      - name: Download dist artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: dist
-          path: dist/
-
-      - name: Deploy static files to VPS
-        uses: appleboy/scp-action@v0.1.7
-        with:
-          host: ${{ secrets.HETZNER_SSH_HOST }}
-          username: ${{ secrets.HETZNER_SSH_USER }}
-          key: ${{ secrets.HETZNER_SSH_KEY }}
-          source: dist/
-          target: ~/kilc-website/
-          overwrite: true
-
-      - name: Deploy nginx vhost config to VPS
-        uses: appleboy/scp-action@v0.1.7
-        with:
-          host: ${{ secrets.HETZNER_SSH_HOST }}
-          username: ${{ secrets.HETZNER_SSH_USER }}
-          key: ${{ secrets.HETZNER_SSH_KEY }}
-          source: nginx/kilc-website.conf
-          target: ~/kilc-platform/nginx/conf.d/
-          overwrite: true
-          strip_components: 1
-
-      - name: Reload Nginx
-        uses: appleboy/ssh-action@v1
-        with:
-          host: ${{ secrets.HETZNER_SSH_HOST }}
-          username: ${{ secrets.HETZNER_SSH_USER }}
-          key: ${{ secrets.HETZNER_SSH_KEY }}
-          script: docker exec kilc-nginx nginx -s reload
-
-      - name: Deploy chat-api to VPS
-        uses: appleboy/scp-action@v0.1.7
-        with:
-          host: ${{ secrets.HETZNER_SSH_HOST }}
-          username: ${{ secrets.HETZNER_SSH_USER }}
-          key: ${{ secrets.HETZNER_SSH_KEY }}
-          source: chat-api/
-          target: ~/kilc-website/
-          overwrite: true
-
-      - name: Install deps and restart chat-api
-        uses: appleboy/ssh-action@v1
-        with:
-          host: ${{ secrets.HETZNER_SSH_HOST }}
-          username: ${{ secrets.HETZNER_SSH_USER }}
-          key: ${{ secrets.HETZNER_SSH_KEY }}
-          script: |
-            cd ~/kilc-website/chat-api
-            npm install --production --silent
-            pm2 restart kilc-chat --update-env 2>/dev/null || pm2 start server.js --name kilc-chat --node-args="--env-file=/home/deploy/kilc-website/chat-api/.env"
-            pm2 save

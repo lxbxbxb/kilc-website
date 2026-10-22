@@ -47,20 +47,17 @@ Changes require testing all 45 pages locally before committing.
 
 ### Chat API (`chat-api/`)
 
-A standalone Node.js HTTP server providing an LLM-powered assistant for KILC services guidance. The system prompt positions KILC as an international legal consultancy (London, Dubai, KL) with 7 service areas + Guardian Shield programme. CTA is conditional (only when the user has a specific professional need), not forced on every response.
+An LLM-powered assistant (now served by the Pages Function `functions/api/chat.js`; `chat-api/server.js` is the former VPS version) for KILC services guidance. The system prompt positions KILC as an international legal consultancy (London, Dubai, KL) with 7 service areas + Guardian Shield programme. CTA is conditional (only when the user has a specific professional need), not forced on every response.
 
 - **Files**: `chat-api/server.js` (HTTP server), `chat-api/prompt.js` (system prompts EN/ZH)
 - **Endpoint**: `POST /api/chat` — accepts `{ messages: [{role, content}...], locale }` (multi-turn) or legacy `{ message: "...", locale }` (single-turn)
 - **LLM**: OpenAI-compatible API (configured via env vars on VPS; default model: `qwen-turbo`)
 - **Rate limit**: 20 requests/IP/minute (in-memory)
 - **Validation**: Max 10 messages, each max 500 chars, roles must be `user` or `assistant`
-- **Proxy**: Nginx routes `/api/chat` → `localhost:3001` (chat-api runs on VPS via pm2)
-- **Env vars** (on VPS at `~/kilc-website/chat-api/.env`, not in git):
+- **Env vars** (Cloudflare Pages project settings; previously `~/kilc-website/chat-api/.env` on the VPS):
   - `OPENAI_API_KEY` — Required
   - `OPENAI_BASE_URL` — Custom endpoint (optional)
   - `OPENAI_MODEL` — Model name (default: `qwen-turbo`)
-  - `ALLOWED_ORIGINS` — CORS origins (default: `https://kilc.co.uk`)
-  - `PORT` — Server port (default: `3001`)
 
 ## Development Workflow
 
@@ -95,7 +92,7 @@ git status            # Verify expected changes
 ### Sacred Files (Design/DNS/Secrets)
 
 - `tailwind.config.mjs` — Brand colors are production-locked; contact design team if changes needed
-- `.github/workflows/deploy.yml` — Deployment pipeline; any changes require review
+- `.github/workflows/deploy.yml` — Build check; any changes require review
 - Cloudflare DNS records (DKIM, SPF, DMARC) — Maintained externally; will break email
 - `src/components/CookieBanner.astro` — Umami Website ID and consent logic; changes affect analytics tracking
 
@@ -107,34 +104,16 @@ git status            # Verify expected changes
 
 ## Deployment Details
 
-### GitHub Actions (`deploy.yml`)
+kilc.co.uk is hosted on **Cloudflare Pages** (project `kilc-website`, Git integration). Full setup and rollback steps: `docs/CLOUDFLARE_PAGES.md`.
 
-Triggers on `push main`:
+- **Production**: every push to `main` is built by Cloudflare (`npm run build`, output `dist`, Node from `.node-version`) and published to kilc.co.uk
+- **Previews**: every pull request gets a `*.kilc-website.pages.dev` preview URL
+- **GitHub Actions** (`.github/workflows/deploy.yml`): build and type-check only (`astro sync` → `tsc --noEmit` → `npm run build`); it no longer deploys
+- **Chat API**: `functions/api/chat.js` (Pages Function, `/api/chat`). Secrets `OPENAI_API_KEY`, `OPENAI_BASE_URL`, `OPENAI_MODEL` are set in the Pages project settings. Prompts stay in `chat-api/prompt-en.js` / `prompt-zh.js`
+- **Headers / routing**: `public/_headers` (security headers, asset caching); `public/_routes.json` limits Functions to `/api/*`
+- **www → apex**: Cloudflare Redirect Rule (see the doc)
 
-1. **Build Job**: `npx astro sync` → `tsc --noEmit` → `npm run build`
-2. **Artifact**: `dist/` uploaded (1-day retention)
-3. **Deploy Job**:
-   - SCP `dist/` and nginx config to VPS, reload nginx
-   - SCP `chat-api/` to VPS, `npm install --production`, pm2 restart `kilc-chat`
-
-**Required GitHub Secrets**:
-- `HETZNER_SSH_HOST`: 157.90.116.169
-- `HETZNER_SSH_USER`: deploy
-- `HETZNER_SSH_KEY`: Private SSH key (~/.ssh/kilc_hetzner locally)
-
-### VPS Deployment Target
-
-- **Host**: 157.90.116.169 (Hetzner)
-- **User**: deploy
-- **Static files**: ~/kilc-website/dist/ (SCP target)
-- **Nginx config**: ~/kilc-platform/nginx/conf.d/kilc-website.conf
-- **Docker**: kilc-nginx container (receives `docker exec kilc-nginx nginx -s reload`)
-
-### Cloudflare
-
-- Proxies kilc.co.uk → 157.90.116.169
-- Full SSL mode
-- Origin cert: ~/kilc-platform/nginx/certs/kilc-origin.pem (on VPS)
+The former Hetzner VPS setup (`nginx/kilc-website.conf`, `chat-api/server.js`, pm2) is kept only for rollback.
 
 ## i18n Guidelines
 
@@ -251,7 +230,7 @@ Do not modify Cloudflare DNS. Contact email provider (Hostinger) if MX records n
 
 - Production domain: kilc.co.uk (Cloudflare)
 - Analytics: https://analytics.kilc.co.uk (Umami)
-- VPS host: Hetzner (157.90.116.169)
+- Hosting: Cloudflare Pages (`kilc-website`); former VPS host Hetzner (157.90.116.169) kept for rollback
 - Email: Hostinger (MX records on Cloudflare)
 - Deploy key: ~/.ssh/kilc_hetzner (local development only)
 

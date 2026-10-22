@@ -1,7 +1,7 @@
 ---
 title: "Understanding UK Legal Consultancy: What Chinese Businesses Need to Know"
 date: "2026-03-01"
-author: "Keane International Legal Consultancy"
+author: "KILC"
 coverImage: "/images/hero/bare-trees-in-front-of-white-concrete-building.jpg"
 tags: ["Legal Insights", "Business", "UK Market"]
 excerpt: "Navigating the UK legal landscape can be complex for Chinese businesses. This guide outlines the key areas of legal consultancy that matter most when expanding to the UK market."

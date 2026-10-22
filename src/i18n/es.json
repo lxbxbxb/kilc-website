@@ -1,6 +1,6 @@
 {
   "site": {
-    "title": "KILC - Keane International Legal Consultancy",
+    "title": "KILC - International Legal Consultancy",
     "description": "Consultoría legal y de cumplimiento transfronterizo para inversores de todo el mundo que se establecen y operan en el Reino Unido."
   },
   "nav": {
@@ -82,7 +82,10 @@
     "error": "Hubo un error al enviar su mensaje. Por favor, inténtelo de nuevo."
   },
   "footer": {
-    "address": "128 City Road, London EC1V 2NX",
+    "address": "15 Praed Mews, London W2 1QY",
+    "tradingAs": "KILC es el nombre comercial de LITON LTD",
+    "registered": "Registrada en Inglaterra y Gales — Número de sociedad 15798697, domicilio social: 15 Praed Mews, London W2 1QY",
+    "copyright": "© KILC / LITON LTD — Todos los derechos reservados",
     "email": "info@kilc.co.uk",
     "rights": "Todos los derechos reservados.",
     "privacy": "Política de Privacidad",

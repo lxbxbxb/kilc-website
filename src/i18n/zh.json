@@ -1,6 +1,6 @@
 {
   "site": {
-    "title": "KILC - 客安国际法律咨询",
+    "title": "KILC - 国际法律咨询",
     "description": "跨境法律与合规咨询，协助来自世界各地的投资者在英国设立并运营业务。"
   },
   "nav": {
@@ -82,7 +82,10 @@
     "error": "发送消息时出错，请重试。"
   },
   "footer": {
-    "address": "128 City Road, London EC1V 2NX",
+    "address": "15 Praed Mews, London W2 1QY",
+    "tradingAs": "KILC 为 LITON LTD 的经营名称",
+    "registered": "在英格兰及威尔士注册 —— 公司注册号 15798697，注册地址：英国伦敦 15 Praed Mews, W2 1QY",
+    "copyright": "© KILC / LITON LTD —— 版权所有",
     "email": "info@kilc.co.uk",
     "rights": "版权所有。",
     "privacy": "隐私政策",

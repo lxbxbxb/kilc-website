@@ -16,7 +16,6 @@ const policyLinks = [
   { label: t(locale, 'footer.ctf'), href: pagePath('ctfPolicy', locale) },
 ];
 
-const year = new Date().getFullYear();
 ---
 
 <footer class="bg-brand-footer text-brand-dark">
@@ -24,9 +23,9 @@ const year = new Date().getFullYear();
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
       <!-- Company Info -->
       <div>
-        <img src="/images/general/kilc-logo-colour-transparent.png" alt="KILC" class="h-36 w-auto mb-4" />
+        <img src="/images/general/kilc-logo.png" alt="KILC" class="h-20 w-auto mb-4" />
         <p class="text-gray-600 text-sm leading-relaxed">
-          Keane International Legal Consultancy
+          {t(locale, 'footer.tradingAs')}
         </p>
         <p class="text-gray-500 text-sm mt-2">
           {t(locale, 'footer.address')}
@@ -101,15 +100,17 @@ const year = new Date().getFullYear();
 
     <!-- Partner Logos & Copyright -->
     <div class="mt-12 pt-8 border-t border-gray-300">
-      <div class="flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
         <div class="flex items-center gap-6">
           <img src="/images/general/british-council-logo.png" alt="British Council" class="h-8 w-auto opacity-60" loading="lazy" />
           <img src="/images/general/ico-logo.png" alt="ICO" class="h-8 w-auto opacity-60" loading="lazy" />
           <img src="/images/general/lanpeng-logo.png" alt="蓝鹏律师事务所" class="h-8 w-auto max-w-[186px] opacity-60" loading="lazy" />
         </div>
-        <p class="text-gray-500 text-sm">
-          &copy; {year} KILC. {t(locale, 'footer.rights')}
-        </p>
+      </div>
+      <div class="mt-6 text-gray-500 text-sm text-center leading-relaxed">
+        <p>{t(locale, 'footer.tradingAs')}</p>
+        <p>{t(locale, 'footer.registered')}</p>
+        <p>{t(locale, 'footer.copyright')}</p>
       </div>
     </div>
   </div>

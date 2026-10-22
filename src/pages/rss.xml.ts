@@ -10,7 +10,7 @@ export async function GET(context: APIContext) {
 
   return rss({
     title: 'KILC Blog — Legal Insights',
-    description: 'Legal insights, company news, and updates from Keane International Legal Consultancy.',
+    description: 'Legal insights, company news, and updates from KILC.',
     site: context.site!,
     items: posts.map(post => {
       const slug = post.data.slug ?? post.id.replace('en/', '').replace('.md', '');

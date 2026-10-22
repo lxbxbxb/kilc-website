@@ -83,7 +83,7 @@ const xDefaultHref = new URL(getAlternateUrl(Astro.url.pathname, DEFAULT_LOCALE)
 
     <!-- Open Graph -->
     <meta property="og:type" content={ogType} />
-    <meta property="og:site_name" content="Keane International Legal Consultancy" />
+    <meta property="og:site_name" content="KILC" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:url" content={canonicalUrl.href} />
@@ -121,10 +121,17 @@ const xDefaultHref = new URL(getAlternateUrl(Astro.url.pathname, DEFAULT_LOCALE)
     <script type="application/ld+json" set:html={JSON.stringify({
       "@context": "https://schema.org",
       "@type": ["Organization", "LegalService"],
-      "name": "Keane International Legal Consultancy",
-      "alternateName": "KILC",
+      "name": "KILC",
+      "legalName": "LITON LTD",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "15 Praed Mews",
+        "addressLocality": "London",
+        "postalCode": "W2 1QY",
+        "addressCountry": "GB"
+      },
       "url": "https://kilc.co.uk",
-      "logo": "https://kilc.co.uk/images/general/kilc-logo-colour-transparent.png",
+      "logo": "https://kilc.co.uk/images/general/kilc-logo.png",
       "description": "Cross-border legal and compliance consultancy helping investors from around the world establish and operate in the UK",
       "areaServed": ["GB", "CN", "AR", "MY"],
       "serviceType": "Legal Consultancy"

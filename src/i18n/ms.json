@@ -1,6 +1,6 @@
 {
   "site": {
-    "title": "KILC - Keane International Legal Consultancy",
+    "title": "KILC - International Legal Consultancy",
     "description": "Perundingan undang-undang dan pematuhan rentas sempadan untuk pelabur dari seluruh dunia yang menubuhkan dan beroperasi di United Kingdom."
   },
   "nav": {
@@ -82,7 +82,10 @@
     "error": "Ralat berlaku semasa menghantar mesej anda. Sila cuba lagi."
   },
   "footer": {
-    "address": "128 City Road, London EC1V 2NX",
+    "address": "15 Praed Mews, London W2 1QY",
+    "tradingAs": "KILC ialah nama dagangan LITON LTD",
+    "registered": "Berdaftar di England & Wales — No. Syarikat 15798697, Pejabat Berdaftar: 15 Praed Mews, London W2 1QY",
+    "copyright": "© KILC / LITON LTD — Hak cipta terpelihara",
     "email": "info@kilc.co.uk",
     "rights": "Hak cipta terpelihara.",
     "privacy": "Dasar Privasi",
